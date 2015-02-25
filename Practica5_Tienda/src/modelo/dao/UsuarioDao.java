@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import modelo.conexion.MySQLConnection;
 
-public class UsuarioDao {
+public class UsuarioDao extends Dao {
 	
 	
 	
@@ -16,9 +16,9 @@ public class UsuarioDao {
 	
 	
 	/** Method for SELECT Statements */
-//	@over
-//	private ArrayList<TutoriaVO> query(String sql) {
-//		MySQLConnection conex = new MySQLConnection();
+//	@override
+//	private ArrayList<Usuario> query(String sql) {
+//		conex = new MySQLConnection();
 //		ArrayList<TutoriaVO> tutorias = new ArrayList<TutoriaVO>();
 //		boolean existe = false;
 //		
