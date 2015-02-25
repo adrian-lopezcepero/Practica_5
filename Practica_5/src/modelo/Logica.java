@@ -20,7 +20,6 @@ public class Logica {
 		productoDao = new ProductoDao();
 		categoriaDao = new CategoriaDao();
 	}
-	
 
 	public UsuarioBean selectUsuario(String alias, String clave) {
 		return this.usuarioDao.selectUsuario(alias, clave);
@@ -33,24 +32,37 @@ public class Logica {
 	public boolean deleteUsuario(int id) {
 		return this.usuarioDao.deleteUsuario(id);
 	}
-	
+
 	public boolean deleteProducto(int id) {
 		return this.productoDao.deleteProducto(id);
 	}
-	
+
 	public boolean insertProducto(ProductoBean productoBean) {
 		return this.productoDao.insertProducto(productoBean);
 	}
-	
+
 	public boolean insertUsuario(UsuarioBean usuarioBean) {
 		return this.usuarioDao.insertUsuario(usuarioBean);
 	}
-	
+
 	public boolean updateProducto(ProductoBean productoBean) {
 		return this.productoDao.updateProducto(productoBean);
 	}
+
 	public boolean updateUsuario(UsuarioBean usuarioBean) {
 		return this.usuarioDao.updateUsuario(usuarioBean);
+	}
+
+	public String getLoginResponse(String idSesion, String ultimaSesion,
+			String alias, String clave) {
+		// Comprueba antes que el usuario existe
+		if (usuarioDao.selectUsuario(alias, clave) != null
+				&& idSesion.equals(ultimaSesion)) {
+			return "loginCorrecto";
+		}
+		
+
+		return null;
 	}
 
 }
