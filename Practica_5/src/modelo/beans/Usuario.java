@@ -15,6 +15,18 @@ public class Usuario implements Serializable {
 	private String alias;
 	private String clave;
 	private String direccion;
+	
+	public Usuario(int idUsuario, String nombre, String apellidos,
+			String email, String alias, String clave, String direccion) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.alias = alias;
+		this.clave = clave;
+		this.direccion = direccion;
+	}
 
 	public int getIdUsuario() {
 		return this.idUsuario;
@@ -71,5 +83,14 @@ public class Usuario implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + this.idUsuario + ", nombre="
+				+ this.nombre + ", apellidos=" + this.apellidos + ", email="
+				+ this.email + ", alias=" + this.alias + ", clave="
+				+ this.clave + ", direccion=" + this.direccion + "]";
+	}
+
 
 }
