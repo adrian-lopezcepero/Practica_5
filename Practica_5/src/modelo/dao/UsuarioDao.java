@@ -10,40 +10,36 @@ import modelo.conexion.MySQLConnection;
 
 public class UsuarioDao extends Dao {
 	private Usuario usuario = new Usuario();
-	
-	
+
 	public boolean insertUsuario(Usuario usuario) {
-		String sql = "INSERT INTO usuario VALUES( "
-				+ "nombre=" + 
-				+ "apellidos="
-				+ "dirección="
-				+ "alias="
-				+ "clave="
-				+ "email="
-				+ ")";
+		String sql = "INSERT INTO usuario VALUES( " + "nombre="
+				+ usuario.getNombre() + "apellidos=" + usuario.getApellidos()
+				+ "dirección=" + usuario.getDireccion() + "alias="
+				+ usuario.getAlias() + "clave=" + usuario.getClave() + "email="
+				+ usuario.getEmail() + ")";
+		return modify(sql);
 	}
-	
+
 	public ArrayList<Usuario> selectAllUsuarios() {
 		String sql = "SELECT * FROM usuario WHERE alias <> 'admin'";
 		return query(sql);
 	}
-	
+
 	public Usuario selectUsuario(String alias, String clave) {
-		String sql = "SELECT * FROM usuario " +
-					 "WHERE alias LIKE '" + alias + "' " +
-					 "AND clave LIKE '" + clave + "'";
+		String sql = "SELECT * FROM usuario " + "WHERE alias LIKE '" + alias
+				+ "' " + "AND clave LIKE '" + clave + "'";
 		return query(sql).get(0);
 	}
-	
+
 	/** Method for SELECT Statements */
 	private ArrayList<Usuario> query(String sql) {
 		conex = new MySQLConnection();
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		
+
 		try {
 			Statement stm = conex.getConnection().createStatement();
 			ResultSet res = stm.executeQuery(sql);
-			while(res.next()){
+			while (res.next()) {
 				existe = true;
 				usuario.setId(res.getInt("id"));
 				usuario.setNombre(res.getString("nombre"));
@@ -56,11 +52,11 @@ public class UsuarioDao extends Dao {
 			}
 			stm.close();
 			conex.disconnect();
-		} 
+		}
 		catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		return (existe) ? usuarios : null;
 	}
 }
