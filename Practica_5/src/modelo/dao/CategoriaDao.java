@@ -4,29 +4,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelo.beans.Categoria;
+import modelo.beans.CategoriaBean;
 import modelo.conexion.MySQLConnection;
 
 public class CategoriaDao extends Dao {
-	private Categoria categoria = new Categoria();
+	private CategoriaBean categoriaBean = new CategoriaBean();
 	
 	
 	
 	
 	
 	/** Method for SELECT Statements */
-	private ArrayList<Categoria> query(String sql) {
+	private ArrayList<CategoriaBean> query(String sql) {
 		conex = new MySQLConnection();
-		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+		ArrayList<CategoriaBean> categoriaBeans = new ArrayList<CategoriaBean>();
 		
 		try {
 			Statement stm = conex.getConnection().createStatement();
 			ResultSet res = stm.executeQuery(sql);
 			while(res.next()){
 				existe = true;
-				categoria.setId(res.getInt("id"));
-				categoria.setNombre(res.getString("nombre"));
-				categorias.add(categoria);
+				categoriaBean.setId(res.getInt("id"));
+				categoriaBean.setNombre(res.getString("nombre"));
+				categoriaBeans.add(categoriaBean);
 			}
 			stm.close();
 			conex.disconnect();
@@ -35,6 +35,6 @@ public class CategoriaDao extends Dao {
 			System.out.println(e.getMessage());
 		}
 		
-		return (existe) ? categorias : null;
+		return (existe) ? categoriaBeans : null;
 	}
 }

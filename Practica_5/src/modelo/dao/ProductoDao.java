@@ -5,38 +5,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.beans.Categoria;
-import modelo.beans.Producto;
+import modelo.beans.CategoriaBean;
+import modelo.beans.ProductoBean;
 import modelo.conexion.MySQLConnection;
 
 public class ProductoDao extends Dao {
-	private Categoria categoria = new Categoria();
-	private Producto producto = new Producto();
+	private CategoriaBean categoriaBean = new CategoriaBean();
+	private ProductoBean productoBean = new ProductoBean();
 	
 	// consultas: alias a las entidades que se propagan
 	
 	
 	
 	/** Method for SELECT Statements */
-	private ArrayList<Producto> query(String sql) {
+	private ArrayList<ProductoBean> query(String sql) {
 		conex = new MySQLConnection();
-		ArrayList<Producto> productos = new ArrayList<Producto>();
+		ArrayList<ProductoBean> productoBeans = new ArrayList<ProductoBean>();
 		
 		try {
 			Statement stm = conex.getConnection().createStatement();
 			ResultSet res = stm.executeQuery(sql);
 			while(res.next()){
 				existe = true;
-				categoria.setId(res.getInt("idCat"));
-				categoria.setNombre(res.getString("nombreCat"));
+				categoriaBean.setId(res.getInt("idCat"));
+				categoriaBean.setNombre(res.getString("nombreCat"));
 				
-				producto.setId(res.getInt("id"));
-				producto.setNombre(res.getString("nombre"));
-				producto.setDescripcion(res.getString("descripcion"));
-				producto.setPrecio(res.getDouble("precio"));
-				producto.setImagen(res.getString("imagen"));
-				producto.setCategoria(categoria);
-				productos.add(producto);
+				productoBean.setId(res.getInt("id"));
+				productoBean.setNombre(res.getString("nombre"));
+				productoBean.setDescripcion(res.getString("descripcion"));
+				productoBean.setPrecio(res.getDouble("precio"));
+				productoBean.setImagen(res.getString("imagen"));
+				productoBean.setCategoria(categoriaBean);
+				productoBeans.add(productoBean);
 			}
 			stm.close();
 			conex.disconnect();
@@ -45,6 +45,6 @@ public class ProductoDao extends Dao {
 			System.out.println(e.getMessage());
 		}
 		
-		return (existe) ? productos : null;
+		return (existe) ? productoBeans : null;
 	}
 }

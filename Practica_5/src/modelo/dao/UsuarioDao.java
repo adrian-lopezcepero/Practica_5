@@ -5,66 +5,66 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.beans.Usuario;
+import modelo.beans.UsuarioBean;
 import modelo.conexion.MySQLConnection;
 
 public class UsuarioDao extends Dao {
-	private Usuario usuario = new Usuario();
+	private UsuarioBean usuarioBean = new UsuarioBean();
 
-	public boolean insertUsuario(Usuario usuario) {
-		String sql = "INSERT INTO usuario VALUES( " + "nombre="
-				+ usuario.getNombre() + "apellidos=" + usuario.getApellidos()
-				+ "dirección=" + usuario.getDireccion() + "alias="
-				+ usuario.getAlias() + "clave=" + usuario.getClave() + "email="
-				+ usuario.getEmail() + ")";
+	public boolean insertUsuario(UsuarioBean usuarioBean) {
+		String sql = "INSERT INTO usuarioBean VALUES( " + "nombre="
+				+ usuarioBean.getNombre() + "apellidos=" + usuarioBean.getApellidos()
+				+ "dirección=" + usuarioBean.getDireccion() + "alias="
+				+ usuarioBean.getAlias() + "clave=" + usuarioBean.getClave() + "email="
+				+ usuarioBean.getEmail() + ")";
 		return modify(sql);
 	}
 
-	public boolean updateUsuario(Usuario usuario) {
-		String format = "UPDATE usuario SET " + "nombre='%s' "
+	public boolean updateUsuario(UsuarioBean usuarioBean) {
+		String format = "UPDATE usuarioBean SET " + "nombre='%s' "
 				+ "apellidos='%s' " + "direccion='%s' " + "alias='%s' "
 				+ "clave='%s' " + "email='%s' ";
-		String sql = String.format(format, usuario.getNombre(),
-				usuario.getApellidos(), usuario.getDireccion(),
-				usuario.getAlias(), usuario.getClave(), usuario.getEmail());
+		String sql = String.format(format, usuarioBean.getNombre(),
+				usuarioBean.getApellidos(), usuarioBean.getDireccion(),
+				usuarioBean.getAlias(), usuarioBean.getClave(), usuarioBean.getEmail());
 		return modify(sql);
 	}
 
 	public boolean deleteUsuario(int id) {
-		String format = "DELETE FROM usuario WHERE id=%d";
+		String format = "DELETE FROM usuarioBean WHERE id=%d";
 		String sql = String.format(format, id);
 		return modify(sql);
 	}
 
-	public ArrayList<Usuario> selectAllUsuarios() {
-		String sql = "SELECT * FROM usuario WHERE alias <> 'admin'";
+	public ArrayList<UsuarioBean> selectAllUsuarios() {
+		String sql = "SELECT * FROM usuarioBean WHERE alias <> 'admin'";
 		return query(sql);
 	}
 
-	public Usuario selectUsuario(String alias, String clave) {
-		String sql = "SELECT * FROM usuario " + "WHERE alias LIKE '" + alias
+	public UsuarioBean selectUsuario(String alias, String clave) {
+		String sql = "SELECT * FROM usuarioBean " + "WHERE alias LIKE '" + alias
 				+ "' " + "AND clave LIKE '" + clave + "'";
 		return query(sql).get(0);
 	}
 
 	/** Method for SELECT Statements */
-	private ArrayList<Usuario> query(String sql) {
+	private ArrayList<UsuarioBean> query(String sql) {
 		conex = new MySQLConnection();
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		ArrayList<UsuarioBean> usuarioBeans = new ArrayList<UsuarioBean>();
 
 		try {
 			Statement stm = conex.getConnection().createStatement();
 			ResultSet res = stm.executeQuery(sql);
 			while (res.next()) {
 				existe = true;
-				usuario.setId(res.getInt("id"));
-				usuario.setNombre(res.getString("nombre"));
-				usuario.setApellidos(res.getString("apellidos"));
-				usuario.setEmail(res.getString("email"));
-				usuario.setAlias(res.getString("alias"));
-				usuario.setClave(res.getString("clave"));
-				usuario.setDireccion(res.getString("direccio"));
-				usuarios.add(usuario);
+				usuarioBean.setId(res.getInt("id"));
+				usuarioBean.setNombre(res.getString("nombre"));
+				usuarioBean.setApellidos(res.getString("apellidos"));
+				usuarioBean.setEmail(res.getString("email"));
+				usuarioBean.setAlias(res.getString("alias"));
+				usuarioBean.setClave(res.getString("clave"));
+				usuarioBean.setDireccion(res.getString("direccio"));
+				usuarioBeans.add(usuarioBean);
 			}
 			stm.close();
 			conex.disconnect();
@@ -73,6 +73,6 @@ public class UsuarioDao extends Dao {
 			System.out.println(e.getMessage());
 		}
 
-		return (existe) ? usuarios : null;
+		return (existe) ? usuarioBeans : null;
 	}
 }

@@ -1,7 +1,7 @@
 package modelo;
 
-import modelo.beans.Producto;
-import modelo.beans.Usuario;
+import modelo.beans.ProductoBean;
+import modelo.beans.UsuarioBean;
 import modelo.dao.CategoriaDao;
 import modelo.dao.PedidoDao;
 import modelo.dao.ProductoDao;
@@ -22,11 +22,11 @@ public class Logica {
 	}
 	
 
-	public Usuario selectUsuario(String alias, String clave) {
+	public UsuarioBean selectUsuario(String alias, String clave) {
 		return this.usuarioDao.selectUsuario(alias, clave);
 	}
 
-	public Producto setProducto(int id) {
+	public ProductoBean setProducto(int id) {
 		return this.productoDao.selectProducto(id);
 	}
 
@@ -38,19 +38,19 @@ public class Logica {
 		return this.productoDao.deleteProducto(id);
 	}
 	
-	public boolean insertProducto(Producto producto) {
-		return this.productoDao.insertProducto(producto);
+	public boolean insertProducto(ProductoBean productoBean) {
+		return this.productoDao.insertProducto(productoBean);
 	}
 	
-	public boolean insertUsuario(Usuario usuario) {
-		return this.usuarioDao.insertUsuario(usuario);
+	public boolean insertUsuario(UsuarioBean usuarioBean) {
+		return this.usuarioDao.insertUsuario(usuarioBean);
 	}
 	
-	public boolean updateProducto(Producto producto) {
-		return this.productoDao.updateProducto(producto);
+	public boolean updateProducto(ProductoBean productoBean) {
+		return this.productoDao.updateProducto(productoBean);
 	}
-	public boolean updateUsuario(Usuario usuario) {
-		return this.usuarioDao.updateUsuario(usuario);
+	public boolean updateUsuario(UsuarioBean usuarioBean) {
+		return this.usuarioDao.updateUsuario(usuarioBean);
 	}
 
 }

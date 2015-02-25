@@ -2,7 +2,7 @@ package modelo.beans;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public class UsuarioBean implements Serializable {
 
 	/**
 	 * 
@@ -16,10 +16,10 @@ public class Usuario implements Serializable {
 	private String clave;
 	private String direccion;
 
-	public Usuario() {
+	public UsuarioBean() {
 	}
 
-	public Usuario(int id, String nombre, String apellidos, String email,
+	public UsuarioBean(int id, String nombre, String apellidos, String email,
 			String alias, String clave, String direccion) {
 		super();
 		this.id = id;
@@ -89,7 +89,7 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + this.id + ", nombre=" + this.nombre
+		return "UsuarioBean [id=" + this.id + ", nombre=" + this.nombre
 				+ ", apellidos=" + this.apellidos + ", email=" + this.email
 				+ ", alias=" + this.alias + ", clave=" + this.clave
 				+ ", direccion=" + this.direccion + "]";

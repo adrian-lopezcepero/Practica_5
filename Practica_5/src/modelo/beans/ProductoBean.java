@@ -2,7 +2,7 @@ package modelo.beans;
 
 import java.io.Serializable;
 
-public class Producto implements Serializable {
+public class ProductoBean implements Serializable {
 
 	/**
 	 * 
@@ -13,20 +13,20 @@ public class Producto implements Serializable {
 	private String descripcion;
 	private Double precio;
 	private String imagen;
-	private Categoria categoria;
+	private CategoriaBean categoriaBean;
 	
-	public Producto() {
+	public ProductoBean() {
 	}
 	
-	public Producto(int id, String nombre, String descripcion, Double precio,
-			String imagen, Categoria categoria) {
+	public ProductoBean(int id, String nombre, String descripcion, Double precio,
+			String imagen, CategoriaBean categoriaBean) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.imagen = imagen;
-		this.categoria = categoria;
+		this.categoriaBean = categoriaBean;
 	}
 	public int getId() {
 		return this.id;
@@ -58,11 +58,11 @@ public class Producto implements Serializable {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public Categoria getCategoria() {
-		return this.categoria;
+	public CategoriaBean getCategoria() {
+		return this.categoriaBean;
 	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategoria(CategoriaBean categoriaBean) {
+		this.categoriaBean = categoriaBean;
 	}
 
 	

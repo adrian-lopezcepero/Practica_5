@@ -5,18 +5,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.beans.Categoria;
-import modelo.beans.LineaPedido;
-import modelo.beans.Pedido;
-import modelo.beans.Producto;
-import modelo.beans.Usuario;
+import modelo.beans.CategoriaBean;
+import modelo.beans.LineaPedidoBean;
+import modelo.beans.PedidoBean;
+import modelo.beans.ProductoBean;
+import modelo.beans.UsuarioBean;
 import modelo.conexion.MySQLConnection;
 
 public class PedidoDao extends Dao {
-	private Usuario usuario = new Usuario();
-	private Categoria categoria = new Categoria();
-	private ArrayList<LineaPedido> lineaPedidos = new ArrayList<LineaPedido>();
-	private Pedido pedido = new Pedido();
+	private UsuarioBean usuarioBean = new UsuarioBean();
+	private CategoriaBean categoriaBean = new CategoriaBean();
+	private ArrayList<LineaPedidoBean> lineaPedidoBeans = new ArrayList<LineaPedidoBean>();
+	private PedidoBean pedidoBean = new PedidoBean();
 	
 	
 	
@@ -28,9 +28,9 @@ public class PedidoDao extends Dao {
 	
 /** De momento no tenemos consultas de Pedidos */	
 //	/** Method for SELECT Statements */
-//	private ArrayList<Pedido> query(String sql) {
+//	private ArrayList<PedidoBean> query(String sql) {
 //		conex = new MySQLConnection();
-//		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+//		ArrayList<PedidoBean> pedidos = new ArrayList<PedidoBean>();
 //		
 //		try {
 //			Statement stm = conex.getConnection().createStatement();
@@ -38,18 +38,18 @@ public class PedidoDao extends Dao {
 //			while(res.next()){
 //				existe = true;
 //				
-//				// Usuario
+//				// UsuarioBean
 //				
-//				// Categoria
-//				categoria.setId(res.getInt("idCat"));
-//				categoria.setNombre(res.getString("nombreCat"));
+//				// CategoriaBean
+//				categoriaBean.setId(res.getInt("idCat"));
+//				categoriaBean.setNombre(res.getString("nombreCat"));
 //				
-//				// Lineas de Pedido
+//				// Lineas de PedidoBean
 //				
 //				
-//				// Pedido
-//				pedido.setId(res.getInt("id"));
-//				pedidos.add(pedido);
+//				// PedidoBean
+//				pedidoBean.setId(res.getInt("id"));
+//				pedidos.add(pedidoBean);
 //			}
 //			stm.close();
 //			conex.disconnect();
