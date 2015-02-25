@@ -50,7 +50,7 @@ public class Logica {
 		return this.productoDao.updateProducto(producto);
 	}
 	public boolean updateUsuario(Usuario usuario) {
-		return this.usuarioDao.update(usuario);
+		return this.usuarioDao.updateUsuario(usuario);
 	}
 
 }

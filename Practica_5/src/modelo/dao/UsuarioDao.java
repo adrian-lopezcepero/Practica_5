@@ -21,8 +21,8 @@ public class UsuarioDao extends Dao {
 	}
 
 	public boolean updateUsuario(Usuario usuario) {
-		String format = "UPDATE usuario SET " + "nobmre='%s' "
-				+ "apellidos='%s' " + "direccion='$s' " + "alias='%s' "
+		String format = "UPDATE usuario SET " + "nombre='%s' "
+				+ "apellidos='%s' " + "direccion='%s' " + "alias='%s' "
 				+ "clave='%s' " + "email='%s' ";
 		String sql = String.format(format, usuario.getNombre(),
 				usuario.getApellidos(), usuario.getDireccion(),
