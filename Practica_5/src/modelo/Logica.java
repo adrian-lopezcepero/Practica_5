@@ -20,6 +20,8 @@ public class Logica {
 		productoDao = new ProductoDao();
 		categoriaDao = new CategoriaDao();
 	}
+	
+	//hola
 
 	public Usuario selectUsuario(String alias, String clave) {
 		return this.usuarioDao.selectUsuario(alias, clave);
