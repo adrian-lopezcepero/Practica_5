@@ -20,6 +20,22 @@ public class UsuarioDao extends Dao {
 		return modify(sql);
 	}
 
+	public boolean updateUsuario(Usuario usuario) {
+		String format = "UPDATE usuario SET " + "nobmre='%s' "
+				+ "apellidos='%s' " + "direccion='$s' " + "alias='%s' "
+				+ "clave='%s' " + "email='%s' ";
+		String sql = String.format(format, usuario.getNombre(),
+				usuario.getApellidos(), usuario.getDireccion(),
+				usuario.getAlias(), usuario.getClave(), usuario.getEmail());
+		return modify(sql);
+	}
+
+	public boolean deleteUsuario(int id) {
+		String format = "DELETE FROM usuario WHERE id=%d";
+		String sql = String.format(format, id);
+		return modify(sql);
+	}
+
 	public ArrayList<Usuario> selectAllUsuarios() {
 		String sql = "SELECT * FROM usuario WHERE alias <> 'admin'";
 		return query(sql);
