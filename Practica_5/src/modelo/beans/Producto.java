@@ -14,6 +14,10 @@ public class Producto implements Serializable {
 	private Double precio;
 	private String imagen;
 	private Categoria categoria;
+	
+	public Producto() {
+	}
+	
 	public Producto(int id, String nombre, String descripcion, Double precio,
 			String imagen, Categoria categoria) {
 		super();

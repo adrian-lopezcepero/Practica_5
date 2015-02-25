@@ -11,15 +11,19 @@ public class Pedido implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
+	private Usuario usuario;
 	private Calendar fecha;
 	private ArrayList<LineaPedido> lineaPedidos;
 	private Double importe;
-	
 
-	public Pedido(int id, Calendar fecha, ArrayList<LineaPedido> lineaPedidos,
-			Double importe) {
+	public Pedido() {
+	}
+
+	public Pedido(int id, Usuario usuario, Calendar fecha,
+			ArrayList<LineaPedido> lineaPedidos, Double importe) {
 		super();
 		this.id = id;
+		this.usuario = usuario;
 		this.fecha = fecha;
 		this.lineaPedidos = lineaPedidos;
 		this.importe = importe;
@@ -59,9 +63,9 @@ public class Pedido implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pedido [id=" + this.id + ", fecha=" + this.fecha
-				+ ", lineaPedidos=" + this.lineaPedidos + ", importe="
-				+ this.importe + "]";
+		return "Pedido [id=" + this.id + ", usuario=" + this.usuario
+				+ ", fecha=" + this.fecha + ", lineaPedidos="
+				+ this.lineaPedidos + ", importe=" + this.importe + "]";
 	}
 
 }

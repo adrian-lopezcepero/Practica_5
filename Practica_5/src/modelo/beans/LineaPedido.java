@@ -12,6 +12,9 @@ public class LineaPedido implements Serializable {
 	private int id;
 	private int cantidad;
 	private ArrayList<Producto> productos;
+	
+	public LineaPedido() {
+	}
 
 	public LineaPedido(int id, int cantidad, ArrayList<Producto> productos) {
 		super();
