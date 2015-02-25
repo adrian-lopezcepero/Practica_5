@@ -8,18 +8,18 @@ public class Usuario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int idUsuario;
+	private int id;
 	private String nombre;
 	private String apellidos;
 	private String email;
 	private String alias;
 	private String clave;
 	private String direccion;
-	
-	public Usuario(int idUsuario, String nombre, String apellidos,
-			String email, String alias, String clave, String direccion) {
+
+	public Usuario(int id, String nombre, String apellidos, String email,
+			String alias, String clave, String direccion) {
 		super();
-		this.idUsuario = idUsuario;
+		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
@@ -28,12 +28,12 @@ public class Usuario implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public int getIdUsuario() {
-		return this.idUsuario;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -86,11 +86,10 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + this.idUsuario + ", nombre="
-				+ this.nombre + ", apellidos=" + this.apellidos + ", email="
-				+ this.email + ", alias=" + this.alias + ", clave="
-				+ this.clave + ", direccion=" + this.direccion + "]";
+		return "Usuario [id=" + this.id + ", nombre=" + this.nombre
+				+ ", apellidos=" + this.apellidos + ", email=" + this.email
+				+ ", alias=" + this.alias + ", clave=" + this.clave
+				+ ", direccion=" + this.direccion + "]";
 	}
-
 
 }

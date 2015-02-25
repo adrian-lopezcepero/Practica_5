@@ -10,17 +10,27 @@ public class Pedido implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int idPedido;
+	private int id;
 	private Calendar fecha;
 	private ArrayList<LineaPedido> lineaPedidos;
 	private Double importe;
+	
 
-	public int getIdPedido() {
-		return this.idPedido;
+	public Pedido(int id, Calendar fecha, ArrayList<LineaPedido> lineaPedidos,
+			Double importe) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.lineaPedidos = lineaPedidos;
+		this.importe = importe;
 	}
 
-	public void setIdPedido(int idPedido) {
-		this.idPedido = idPedido;
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Calendar getFecha() {
@@ -45,6 +55,13 @@ public class Pedido implements Serializable {
 
 	public void setImporte(Double importe) {
 		this.importe = importe;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [id=" + this.id + ", fecha=" + this.fecha
+				+ ", lineaPedidos=" + this.lineaPedidos + ", importe="
+				+ this.importe + "]";
 	}
 
 }
