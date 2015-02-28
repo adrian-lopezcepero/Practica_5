@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 
+import org.apache.jasper.compiler.Node.UseBean;
+
 import modelo.Logica;
+import modelo.beans.UsuarioBean;
 
 /**
  * Servlet implementation class UsuarioBean
  */
 @WebServlet("/UsuarioBean")
-public class Usuario extends HttpServlet {
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String alias;
 	private String clave;
@@ -25,7 +28,7 @@ public class Usuario extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Usuario() {
+	public Login() {
 		super();
 		logica = new Logica();
 	}
@@ -57,16 +60,16 @@ public class Usuario extends HttpServlet {
 		session.setAttribute("clave", request.getParameter("clave"));
 		alias = (String) session.getAttribute("alias");
 		clave = (String) session.getAttribute("clave");
+		
 
 		// Para controlar la sessión única, el atributo de aplicación se
 		// inicializa en el index.jsp como atributo de aplicación.
 		String ultimaSesion = (String) getServletContext().getAttribute(
 				"ultimaSesion");
-		String respuestaLogin = logica.getLoginResponse(session.getId(),
+		UsuarioBean respuestaLogin = logica.getLoginResponse(session.getId(),
 				ultimaSesion, alias, clave);
-
+		session.setAttribute("usuarioBean", respuestaLogin);
 		response.sendRedirect("login.jsp");
 
 	}
-
 }

@@ -53,15 +53,13 @@ public class Logica {
 		return this.usuarioDao.updateUsuario(usuarioBean);
 	}
 
-	public String getLoginResponse(String idSesion, String ultimaSesion,
+	public UsuarioBean getLoginResponse(String idSesion, String ultimaSesion,
 			String alias, String clave) {
 		// Comprueba antes que el usuario existe
-		if (usuarioDao.selectUsuario(alias, clave) != null
-				&& idSesion.equals(ultimaSesion)) {
-			return "loginCorrecto";
+		UsuarioBean usuarioBean = usuarioDao.selectUsuario(alias, clave);
+		if (usuarioBean != null && idSesion.equals(ultimaSesion)) {
+			return usuarioBean;
 		}
-		
-
 		return null;
 	}
 
