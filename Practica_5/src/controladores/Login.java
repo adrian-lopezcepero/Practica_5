@@ -21,6 +21,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String alias;
 	private String clave;
+	private UsuariosBean usuariosBean;
 	private Logica logica;
 
 	/**
@@ -53,10 +54,28 @@ public class Login extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
+		// En primer lugar obtenemos los usuarios que están logeados.
+		usuariosBean = (UsuariosBean) getServletContext()
+				.getAttribute("usuariosBean");
+		if (usuariosBean == null) {
+			usuariosBean = new UsuariosBean();
+		}
+		// Obtenemos el alias y la clave.
+		alias = request.getParameter("alias");
+		clave = request.getParameter("clave");
+
 		if (request.getParameter("login") != null) {
 			tryLogin(request, session);
+			response.sendRedirect("index.jsp");
 		}
-
+		if (request.getParameter("logOut") != null) {
+			UsuarioBean usuarioBean = (UsuarioBean) session
+					.getAttribute("usuarioBean");
+			usuariosBean.deleteUser(usuarioBean);
+			session.setAttribute("usuarioBean", null);
+			session.setAttribute("isLogin", false);
+			response.sendRedirect("index.jsp");
+		}
 
 	}
 
@@ -68,21 +87,13 @@ public class Login extends HttpServlet {
 	 * @param session
 	 */
 	private void tryLogin(HttpServletRequest request, HttpSession session) {
-		// En primer lugar obtenemos los usuarios que están logeados.
-		UsuariosBean usuariosBean = (UsuariosBean) getServletContext()
-				.getAttribute("usuariosBean");
-		if (usuariosBean == null) {
-			usuariosBean = new UsuariosBean();
-		}
-		// Obtenemos el alias y la clave.
-		alias = request.getParameter("alias");
-		clave = request.getParameter("clave");
 
-		// Comprobamos que el usuario no está ya logeado
+		// Comprobamos si el usuario está ya logeado
 		UsuarioBean userLogged = logica.getLoginResponse(alias, clave,
 				usuariosBean);
 		if (userLogged != null) {
 			if (userLogged.getSessionId().equals(session.getId())) {
+				System.out.println("hola");
 				session.setAttribute("isSameSession", true);
 			}
 		}
@@ -92,13 +103,16 @@ public class Login extends HttpServlet {
 			UsuarioBean usuarioBean = logica.verificaUsuario(alias, clave);
 			if (usuarioBean != null) {
 				session.setAttribute("isAdmin", logica.isAdmin(usuarioBean));
-				session.setAttribute("isLogging", true);
+				session.setAttribute("isLogin", true);
+				usuarioBean.setSessionId(session.getId());
+				session.setAttribute("usuarioBean", usuarioBean);
 				usuariosBean.getLoggedUsers().add(usuarioBean);
-				getServletContext().setAttribute("usariosBean", usuariosBean);
+				getServletContext().setAttribute(
+						"usuariosBean", usuariosBean);
 			}
 			else {
-				// El usuario no existe, impedimos que inicie sesion.
-				session.setAttribute("isLogging", false);
+				// El usuario no existe, impedimos que inicie sesión.
+				session.setAttribute("isLogin", false);
 			}
 		}
 	}

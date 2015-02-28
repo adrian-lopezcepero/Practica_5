@@ -2,6 +2,10 @@ package modelo.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 public class UsuariosBean implements Serializable {
 
@@ -24,5 +28,15 @@ public class UsuariosBean implements Serializable {
 		this.loggedUsers = loggedUsers;
 	}
 	
+	public boolean deleteUser(UsuarioBean usuarioBean) {
+		for (int i = 0; i < loggedUsers.size(); i++) {
+			UsuarioBean usuario = loggedUsers.get(i);
+			if (usuarioBean.getId() == usuario.getId()) {
+				loggedUsers.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }

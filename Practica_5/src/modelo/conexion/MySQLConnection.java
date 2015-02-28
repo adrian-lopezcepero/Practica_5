@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MySQLConnection {
 	private final String DRIVER = "com.mysql.jdbc.Driver";
 	private final String PATH = "jdbc:mysql://localhost:3306/";
-	private final String DATABASE = "dwes_tiendavirtual";
+	private final String DATABASE = "tienda";
 	private final String USER = "root";
 	private final String PASSWORD = "";
 	private Connection connection;

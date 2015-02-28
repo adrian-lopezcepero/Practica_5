@@ -104,4 +104,5 @@ public class UsuarioBean implements Serializable {
 				+ ", direccion=" + this.direccion + "]";
 	}
 
+	
 }

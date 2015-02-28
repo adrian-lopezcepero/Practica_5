@@ -13,10 +13,11 @@ public class UsuarioDao extends Dao {
 
 	public boolean insertUsuario(UsuarioBean usuarioBean) {
 		String sql = "INSERT INTO usuarioBean VALUES( " + "nombre="
-				+ usuarioBean.getNombre() + "apellidos=" + usuarioBean.getApellidos()
-				+ "dirección=" + usuarioBean.getDireccion() + "alias="
-				+ usuarioBean.getAlias() + "clave=" + usuarioBean.getClave() + "email="
-				+ usuarioBean.getEmail() + ")";
+				+ usuarioBean.getNombre() + "apellidos="
+				+ usuarioBean.getApellidos() + "dirección="
+				+ usuarioBean.getDireccion() + "alias="
+				+ usuarioBean.getAlias() + "clave=" + usuarioBean.getClave()
+				+ "email=" + usuarioBean.getEmail() + ")";
 		return modify(sql);
 	}
 
@@ -26,7 +27,8 @@ public class UsuarioDao extends Dao {
 				+ "clave='%s' " + "email='%s' ";
 		String sql = String.format(format, usuarioBean.getNombre(),
 				usuarioBean.getApellidos(), usuarioBean.getDireccion(),
-				usuarioBean.getAlias(), usuarioBean.getClave(), usuarioBean.getEmail());
+				usuarioBean.getAlias(), usuarioBean.getClave(),
+				usuarioBean.getEmail());
 		return modify(sql);
 	}
 
@@ -42,9 +44,9 @@ public class UsuarioDao extends Dao {
 	}
 
 	public UsuarioBean selectUsuario(String alias, String clave) {
-		String sql = "SELECT * FROM usuarioBean " + "WHERE alias LIKE '" + alias
+		String sql = "SELECT * FROM usuario " + "WHERE alias LIKE '" + alias
 				+ "' " + "AND clave LIKE '" + clave + "'";
-		return query(sql).get(0);
+		return query(sql) != null ? query(sql).get(0) : null;
 	}
 
 	/** Method for SELECT Statements */
@@ -63,7 +65,7 @@ public class UsuarioDao extends Dao {
 				usuarioBean.setEmail(res.getString("email"));
 				usuarioBean.setAlias(res.getString("alias"));
 				usuarioBean.setClave(res.getString("clave"));
-				usuarioBean.setDireccion(res.getString("direccio"));
+				usuarioBean.setDireccion(res.getString("direccion"));
 				usuarioBeans.add(usuarioBean);
 			}
 			stm.close();
