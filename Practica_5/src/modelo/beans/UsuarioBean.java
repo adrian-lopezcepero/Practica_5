@@ -15,6 +15,7 @@ public class UsuarioBean implements Serializable {
 	private String alias;
 	private String clave;
 	private String direccion;
+	private String sessionId;
 
 	public UsuarioBean() {
 	}
@@ -85,6 +86,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 	@Override
