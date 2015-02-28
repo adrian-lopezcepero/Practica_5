@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+header, nav, section, aside, footer {
+	width: 95%;
+	margin: 0.2em auto;
+	padding: 0.3em;
+	text-align: center;
+}
+
+#loginCartContainer section {
+	display: inline-block;
+}
+
+#loginCartContainer section#loginContainer {
+	width: 70%;
+}
+
+#loginCartContainer section#loginContainer div{
+	display: inline-block;
+}
+
+#loginCartContainer section#cartContainer {
+	width: 25%;
+}
+
+#cartContainer img {
+	min-width: 20px;
+	width: 10%;
+}
