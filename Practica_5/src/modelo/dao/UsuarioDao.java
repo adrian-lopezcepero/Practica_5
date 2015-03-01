@@ -23,13 +23,13 @@ public class UsuarioDao extends Dao {
 	}
 
 	public boolean updateUsuario(UsuarioBean usuarioBean) {
-		String format = "UPDATE usuario SET " + "nombre='%s' "
-				+ "apellidos='%s' " + "direccion='%s' " + "alias='%s' "
-				+ "clave='%s' " + "email='%s' ";
+		String format = "UPDATE usuario SET " + "nombre='%s', "
+				+ "apellidos='%s', " + "direccion='%s', " + "alias='%s', "
+				+ "clave='%s', " + "email='%s' WHERE id=%d";
 		String sql = String.format(format, usuarioBean.getNombre(),
 				usuarioBean.getApellidos(), usuarioBean.getDireccion(),
 				usuarioBean.getAlias(), usuarioBean.getClave(),
-				usuarioBean.getEmail());
+				usuarioBean.getEmail(),usuarioBean.getId());
 		return modify(sql);
 	}
 

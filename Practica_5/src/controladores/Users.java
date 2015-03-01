@@ -50,21 +50,35 @@ public class Users extends HttpServlet {
 		if (request.getParameter("add") != null) {
 			response.sendRedirect("views/addUser.jsp");
 		}
+		if (request.getParameter("modify") != null) {
+			ArrayList<UsuarioBean> users = (ArrayList<UsuarioBean>) session.getAttribute("allUsers");
+			UsuarioBean usuarioBean = users.get(Integer.parseInt(request
+					.getParameter("userSelected")));
+			System.out.println(usuarioBean);
+			session.setAttribute("usuarioModificar", usuarioBean);
+//			response.sendRedirect("views/addUser.jsp");
+		}
+		if (request.getParameter("remove") != null) {
+			
+		}
 		if (request.getParameter("sendNew") != null) {
-			logica.insertUsuario(new UsuarioBean(0,request.getParameter("name"),
-					request.getParameter("surname"), request
-							.getParameter("email"), request
+			logica.insertUsuario(new UsuarioBean(0, request
+					.getParameter("name"), request.getParameter("surname"),
+					request.getParameter("email"), request
 							.getParameter("alias"), request
 							.getParameter("password"), request
 							.getParameter("address")));
 		}
 		if (request.getParameter("sendModify") != null) {
-			logica.updateUsuario(new UsuarioBean(0,request.getParameter("name"),
-					request.getParameter("surname"), request
-							.getParameter("email"), request
+			UsuarioBean usuarioBean = (UsuarioBean) session
+					.getAttribute("usuarioModificar");
+			logica.updateUsuario(new UsuarioBean(usuarioBean.getId(), request
+					.getParameter("name"), request.getParameter("surname"),
+					request.getParameter("email"), request
 							.getParameter("alias"), request
 							.getParameter("password"), request
 							.getParameter("address")));
+			session.removeAttribute("usuarioModifcar");
 		}
 
 	}

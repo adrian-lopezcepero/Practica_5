@@ -20,9 +20,8 @@
 			formnovalidate="formnovalidate">Añadir usuario</button>
 		<button id="modify" name="modify" type="submit">Modificar
 			usuario</button>
-		<button id="remove" name="remove" type="submit">Añadir
+		<button id="remove" name="remove" type="submit">Borrar
 			usuario</button>
-		<button id="view" name="view" type="submit">Ver usuario</button>
 
 		<div id="table">
 			<table>
@@ -36,10 +35,10 @@
 					<th>DIRECCIÓN</th>
 				</tr>
 
-				<c:forEach var="usuario" items="${sessionScope.allUsers }">
+				<c:forEach var="usuario" items="${sessionScope.allUsers }" varStatus="status">
 					<tr>
 						<td>
-							<input type="radio" name="userSelected" value="${usuario.id }"
+							<input type="radio" name="userSelected" value="${status.count - 1}"
 								id="${usuario.id }">
 						</td>
 						<td>${usuario.nombre }</td>
