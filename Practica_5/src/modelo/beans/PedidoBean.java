@@ -68,4 +68,20 @@ public class PedidoBean implements Serializable {
 				+ this.lineaPedidoBeans + ", importe=" + this.importe + "]";
 	}
 
+	public UsuarioBean getUsuarioBean() {
+		return this.usuarioBean;
+	}
+
+	public void setUsuarioBean(UsuarioBean usuarioBean) {
+		this.usuarioBean = usuarioBean;
+	}
+
+	public ArrayList<LineaPedidoBean> getLineaPedidoBeans() {
+		return this.lineaPedidoBeans;
+	}
+
+	public void setLineaPedidoBeans(ArrayList<LineaPedidoBean> lineaPedidoBeans) {
+		this.lineaPedidoBeans = lineaPedidoBeans;
+	}
+
 }

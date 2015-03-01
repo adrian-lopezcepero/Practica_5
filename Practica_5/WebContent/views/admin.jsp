@@ -15,7 +15,7 @@
 
 
 
-	<form action="Users" method="get">
+	<form action="../Users" method="get">
 		<button id="add" name="add" type="submit"
 			formnovalidate="formnovalidate">Añadir usuario</button>
 		<button id="modify" name="modify" type="submit">Modificar

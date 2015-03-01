@@ -12,12 +12,13 @@ public class UsuarioDao extends Dao {
 	private UsuarioBean usuarioBean = new UsuarioBean();
 
 	public boolean insertUsuario(UsuarioBean usuarioBean) {
-		String sql = "INSERT INTO usuario VALUES( " + "nombre="
-				+ usuarioBean.getNombre() + "apellidos="
-				+ usuarioBean.getApellidos() + "dirección="
-				+ usuarioBean.getDireccion() + "alias="
-				+ usuarioBean.getAlias() + "clave=" + usuarioBean.getClave()
-				+ "email=" + usuarioBean.getEmail() + ")";
+		String sql = "INSERT INTO usuario SET nombre='"
+				+ usuarioBean.getNombre() + "',apellidos='"
+				+ usuarioBean.getApellidos() + "',direccion='"
+				+ usuarioBean.getDireccion() + "',alias='"
+				+ usuarioBean.getAlias() + "',clave='" + usuarioBean.getClave()
+				+ "',email='" + usuarioBean.getEmail() + "'";
+		System.out.println(sql);
 		return modify(sql);
 	}
 

@@ -183,7 +183,4 @@ public class UsuarioBean implements Serializable {
 		return true;
 	}
 
-
-
-	
 }

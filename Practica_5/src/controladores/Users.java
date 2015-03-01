@@ -41,7 +41,7 @@ public class Users extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		
+
 		if (request.getParameter("getAllUsers") != null) {
 			ArrayList<UsuarioBean> allUsers = logica.getUsuarios();
 			session.setAttribute("allUsers", allUsers);
@@ -50,7 +50,23 @@ public class Users extends HttpServlet {
 		if (request.getParameter("add") != null) {
 			response.sendRedirect("views/addUser.jsp");
 		}
-		
+		if (request.getParameter("sendNew") != null) {
+			logica.insertUsuario(new UsuarioBean(0,request.getParameter("name"),
+					request.getParameter("surname"), request
+							.getParameter("email"), request
+							.getParameter("alias"), request
+							.getParameter("password"), request
+							.getParameter("address")));
+		}
+		if (request.getParameter("sendModify") != null) {
+			logica.updateUsuario(new UsuarioBean(0,request.getParameter("name"),
+					request.getParameter("surname"), request
+							.getParameter("email"), request
+							.getParameter("alias"), request
+							.getParameter("password"), request
+							.getParameter("address")));
+		}
+
 	}
 
 	/**
