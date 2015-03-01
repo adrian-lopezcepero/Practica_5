@@ -25,8 +25,9 @@
 		</c:if>
 
 		<c:choose>
-			<c:when test="${sessionScope.isSameSession }">
+			<c:when test="${!sessionScope.isSameSession }">
 				<span>Ya estás logeado en otra sesión</span>
+				<button id="logOut" name="logOut" type="submit">Log out</button>
 			</c:when>
 			<c:otherwise>
 				<c:choose>
@@ -35,7 +36,10 @@
 						<c:choose>
 							<c:when test="${sessionScope.isAdmin }">
 								<span>Bienvenido ${usuarioBean.alias }</span>
-								<a href="admin.jsp">Administrar</a>
+								<c:url var="admin" value="Users">
+									<c:param name="getAllUsers">true</c:param>
+								</c:url>
+								<a href="${admin }">Administrar</a>
 							</c:when>
 							<c:otherwise>
 								<span>Bienvenido ${usuarioBean.alias }</span>

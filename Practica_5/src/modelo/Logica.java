@@ -56,12 +56,14 @@ public class Logica {
 		return this.usuarioDao.updateUsuario(usuarioBean);
 	}
 
-	public UsuarioBean getLoginResponse(String alias, String clave, UsuariosBean usuariosBean) {
+	public UsuarioBean getLoginResponse(String alias, String clave,
+			UsuariosBean usuariosBean) {
 		// Comprueba que el usuario existe
 		ArrayList<UsuarioBean> usuariosLogeados = usuariosBean.getLoggedUsers();
 		for (int i = 0; i < usuariosLogeados.size(); i++) {
 			UsuarioBean usuarioBean = usuariosLogeados.get(i);
-			if (usuarioBean.getAlias().equals(alias) && usuarioBean.getClave().equals(clave)) {
+			if (usuarioBean.getAlias().equals(alias)
+					&& usuarioBean.getClave().equals(clave)) {
 				return usuarioBean;
 			}
 		}
@@ -84,7 +86,12 @@ public class Logica {
 
 	public boolean isAdmin(UsuarioBean usuarioBean) {
 		// TODO Auto-generated method stub
-		return usuarioBean.getAlias().equals("Admin");
+		return usuarioBean.getAlias().equals("admin");
+	}
+
+	public ArrayList<UsuarioBean> getUsuarios() {
+		// TODO Auto-generated method stub
+		return usuarioDao.selectAllUsuarios();
 	}
 
 }

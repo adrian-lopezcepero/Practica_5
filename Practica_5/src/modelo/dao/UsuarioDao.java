@@ -12,7 +12,7 @@ public class UsuarioDao extends Dao {
 	private UsuarioBean usuarioBean = new UsuarioBean();
 
 	public boolean insertUsuario(UsuarioBean usuarioBean) {
-		String sql = "INSERT INTO usuarioBean VALUES( " + "nombre="
+		String sql = "INSERT INTO usuario VALUES( " + "nombre="
 				+ usuarioBean.getNombre() + "apellidos="
 				+ usuarioBean.getApellidos() + "dirección="
 				+ usuarioBean.getDireccion() + "alias="
@@ -22,7 +22,7 @@ public class UsuarioDao extends Dao {
 	}
 
 	public boolean updateUsuario(UsuarioBean usuarioBean) {
-		String format = "UPDATE usuarioBean SET " + "nombre='%s' "
+		String format = "UPDATE usuario SET " + "nombre='%s' "
 				+ "apellidos='%s' " + "direccion='%s' " + "alias='%s' "
 				+ "clave='%s' " + "email='%s' ";
 		String sql = String.format(format, usuarioBean.getNombre(),
@@ -33,13 +33,13 @@ public class UsuarioDao extends Dao {
 	}
 
 	public boolean deleteUsuario(int id) {
-		String format = "DELETE FROM usuarioBean WHERE id=%d";
+		String format = "DELETE FROM usuario WHERE id=%d";
 		String sql = String.format(format, id);
 		return modify(sql);
 	}
 
 	public ArrayList<UsuarioBean> selectAllUsuarios() {
-		String sql = "SELECT * FROM usuarioBean WHERE alias <> 'admin'";
+		String sql = "SELECT * FROM usuario WHERE alias <> 'admin'";
 		return query(sql);
 	}
 
@@ -59,6 +59,7 @@ public class UsuarioDao extends Dao {
 			ResultSet res = stm.executeQuery(sql);
 			while (res.next()) {
 				existe = true;
+				UsuarioBean usuarioBean = new UsuarioBean();
 				usuarioBean.setId(res.getInt("id"));
 				usuarioBean.setNombre(res.getString("nombre"));
 				usuarioBean.setApellidos(res.getString("apellidos"));

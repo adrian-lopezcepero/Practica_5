@@ -101,8 +101,89 @@ public class UsuarioBean implements Serializable {
 		return "UsuarioBean [id=" + this.id + ", nombre=" + this.nombre
 				+ ", apellidos=" + this.apellidos + ", email=" + this.email
 				+ ", alias=" + this.alias + ", clave=" + this.clave
-				+ ", direccion=" + this.direccion + "]";
+				+ ", direccion=" + this.direccion + ", sessionId="
+				+ this.sessionId + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((this.alias == null) ? 0 : this.alias.hashCode());
+		result = prime * result
+				+ ((this.apellidos == null) ? 0 : this.apellidos.hashCode());
+		result = prime * result
+				+ ((this.clave == null) ? 0 : this.clave.hashCode());
+		result = prime * result
+				+ ((this.direccion == null) ? 0 : this.direccion.hashCode());
+		result = prime * result
+				+ ((this.email == null) ? 0 : this.email.hashCode());
+		result = prime * result + this.id;
+		result = prime * result
+				+ ((this.nombre == null) ? 0 : this.nombre.hashCode());
+		result = prime * result
+				+ ((this.sessionId == null) ? 0 : this.sessionId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UsuarioBean other = (UsuarioBean) obj;
+		if (this.alias == null) {
+			if (other.alias != null)
+				return false;
+		}
+		else if (!this.alias.equals(other.alias))
+			return false;
+		if (this.apellidos == null) {
+			if (other.apellidos != null)
+				return false;
+		}
+		else if (!this.apellidos.equals(other.apellidos))
+			return false;
+		if (this.clave == null) {
+			if (other.clave != null)
+				return false;
+		}
+		else if (!this.clave.equals(other.clave))
+			return false;
+		if (this.direccion == null) {
+			if (other.direccion != null)
+				return false;
+		}
+		else if (!this.direccion.equals(other.direccion))
+			return false;
+		if (this.email == null) {
+			if (other.email != null)
+				return false;
+		}
+		else if (!this.email.equals(other.email))
+			return false;
+		if (this.id != other.id)
+			return false;
+		if (this.nombre == null) {
+			if (other.nombre != null)
+				return false;
+		}
+		else if (!this.nombre.equals(other.nombre))
+			return false;
+		if (this.sessionId == null) {
+			if (other.sessionId != null)
+				return false;
+		}
+		else if (!this.sessionId.equals(other.sessionId))
+			return false;
+		return true;
+	}
+
+
 
 	
 }

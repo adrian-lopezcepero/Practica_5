@@ -55,8 +55,8 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// En primer lugar obtenemos los usuarios que están logeados.
-		usuariosBean = (UsuariosBean) getServletContext()
-				.getAttribute("usuariosBean");
+		usuariosBean = (UsuariosBean) getServletContext().getAttribute(
+				"usuariosBean");
 		if (usuariosBean == null) {
 			usuariosBean = new UsuariosBean();
 		}
@@ -72,8 +72,10 @@ public class Login extends HttpServlet {
 			UsuarioBean usuarioBean = (UsuarioBean) session
 					.getAttribute("usuarioBean");
 			usuariosBean.deleteUser(usuarioBean);
+			getServletContext().setAttribute("usuariosBean", usuariosBean);
 			session.setAttribute("usuarioBean", null);
 			session.setAttribute("isLogin", false);
+			session.setAttribute("isSameSession",true);
 			response.sendRedirect("index.jsp");
 		}
 
@@ -92,10 +94,9 @@ public class Login extends HttpServlet {
 		UsuarioBean userLogged = logica.getLoginResponse(alias, clave,
 				usuariosBean);
 		if (userLogged != null) {
-			if (userLogged.getSessionId().equals(session.getId())) {
-				System.out.println("hola");
-				session.setAttribute("isSameSession", true);
-			}
+			session.setAttribute("isSameSession", userLogged.getSessionId()
+					.equals(session.getId()));
+
 		}
 		else {
 			// El usuario no está logeado
@@ -107,8 +108,7 @@ public class Login extends HttpServlet {
 				usuarioBean.setSessionId(session.getId());
 				session.setAttribute("usuarioBean", usuarioBean);
 				usuariosBean.getLoggedUsers().add(usuarioBean);
-				getServletContext().setAttribute(
-						"usuariosBean", usuariosBean);
+				getServletContext().setAttribute("usuariosBean", usuariosBean);
 			}
 			else {
 				// El usuario no existe, impedimos que inicie sesión.
