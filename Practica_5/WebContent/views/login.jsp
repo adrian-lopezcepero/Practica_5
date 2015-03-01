@@ -39,7 +39,11 @@
 								<c:url var="admin" value="Users">
 									<c:param name="getAllUsers">true</c:param>
 								</c:url>
-								<a href="${admin }">Administrar</a>
+								<a href="${admin }">Administrar usuarios</a>
+								<c:url var="product" value="Products">
+									<c:param name="getAllProducts">true</c:param>
+								</c:url>
+								<a href="${admin }">Administrar usuarios</a>
 							</c:when>
 							<c:otherwise>
 								<span>Bienvenido ${usuarioBean.alias }</span>
