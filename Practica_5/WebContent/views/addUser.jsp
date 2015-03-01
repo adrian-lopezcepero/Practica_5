@@ -11,8 +11,7 @@
 <title>MQM</title>
 </head>
 <body>
-	<jsp:useBean id="usuarioModificar" class="modelo.beans.UsuarioBean" scope="session"></jsp:useBean>
-<%-- 	${usuarioModificar } --%>
+	${usuarioModificar }
 	<form action="../Users" method="get">
 		<label for="name">Nombre:</label>
 		<input type="text" id="name" name="name"

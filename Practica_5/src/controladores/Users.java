@@ -48,26 +48,39 @@ public class Users extends HttpServlet {
 			response.sendRedirect("views/admin.jsp");
 		}
 		if (request.getParameter("add") != null) {
+			session.removeAttribute("usuarioModificar");
 			response.sendRedirect("views/addUser.jsp");
 		}
 		if (request.getParameter("modify") != null) {
-			ArrayList<UsuarioBean> users = (ArrayList<UsuarioBean>) session.getAttribute("allUsers");
-			UsuarioBean usuarioBean = users.get(Integer.parseInt(request
-					.getParameter("userSelected")));
-			System.out.println(usuarioBean);
-			session.setAttribute("usuarioModificar", usuarioBean);
-//			response.sendRedirect("views/addUser.jsp");
+			ArrayList<UsuarioBean> users = (ArrayList<UsuarioBean>) session
+					.getAttribute("allUsers");
+			UsuarioBean usuarioSeleccionado = users.get(Integer
+					.parseInt(request.getParameter("userSelected")));
+			session.setAttribute("usuarioModificar", usuarioSeleccionado);
+			response.sendRedirect("views/addUser.jsp");
 		}
 		if (request.getParameter("remove") != null) {
-			
+			ArrayList<UsuarioBean> users = (ArrayList<UsuarioBean>) session
+					.getAttribute("allUsers");
+			UsuarioBean usuarioSeleccionado = users.get(Integer
+					.parseInt(request.getParameter("userSelected")));
+			logica.deleteUsuario(usuarioSeleccionado.getId());
+			// Vuelve a recargar la página para comprobar que se ha borrado
+			response.sendRedirect("Users?getAllUsers=true");
+
 		}
 		if (request.getParameter("sendNew") != null) {
-			logica.insertUsuario(new UsuarioBean(0, request
+			UsuarioBean bean = new UsuarioBean(0, request
 					.getParameter("name"), request.getParameter("surname"),
 					request.getParameter("email"), request
 							.getParameter("alias"), request
 							.getParameter("password"), request
-							.getParameter("address")));
+							.getParameter("address"));
+			System.out.println(bean);
+			logica.insertUsuario(bean);
+			// Vuelve a recargar la página para comprobar que se ha añadido
+			response.sendRedirect("Users?getAllUsers=true");
+			
 		}
 		if (request.getParameter("sendModify") != null) {
 			UsuarioBean usuarioBean = (UsuarioBean) session
@@ -78,7 +91,8 @@ public class Users extends HttpServlet {
 							.getParameter("alias"), request
 							.getParameter("password"), request
 							.getParameter("address")));
-			session.removeAttribute("usuarioModifcar");
+			// Vuelve a recargar la página para comprobar que se ha modificado
+			response.sendRedirect("Users?getAllUsers=true");
 		}
 
 	}
@@ -90,6 +104,7 @@ public class Users extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
