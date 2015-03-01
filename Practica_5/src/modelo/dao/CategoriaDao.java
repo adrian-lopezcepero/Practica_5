@@ -8,9 +8,11 @@ import modelo.beans.CategoriaBean;
 import modelo.conexion.MySQLConnection;
 
 public class CategoriaDao extends Dao {
-	private CategoriaBean categoriaBean = new CategoriaBean();
 	
-	
+	public ArrayList<CategoriaBean> selectAllCategorias() {
+		String sql = "SELECT * FROM categoria ORDER BY nombre";
+		return query(sql);
+	}
 	
 	
 	
@@ -24,6 +26,7 @@ public class CategoriaDao extends Dao {
 			ResultSet res = stm.executeQuery(sql);
 			while(res.next()){
 				existe = true;
+				CategoriaBean categoriaBean = new CategoriaBean();
 				categoriaBean.setId(res.getInt("id"));
 				categoriaBean.setNombre(res.getString("nombre"));
 				categoriaBeans.add(categoriaBean);

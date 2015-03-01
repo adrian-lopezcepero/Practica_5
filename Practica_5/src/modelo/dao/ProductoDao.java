@@ -10,10 +10,60 @@ import modelo.beans.ProductoBean;
 import modelo.conexion.MySQLConnection;
 
 public class ProductoDao extends Dao {
-	private CategoriaBean categoriaBean = new CategoriaBean();
-	private ProductoBean productoBean = new ProductoBean();
 	
-	// consultas: alias a las entidades que se propagan
+	public boolean insertProducto(ProductoBean producto) {
+		String sql = "INSERT INTO producto (nombre, descripcion, precio, imagen, idCategoria) "
+				   + "VALUES ('" + producto.getNombre() + "', "
+				   		   + "'" + producto.getDescripcion() + "', "
+				   		   + "'" + producto.getPrecio() + "', "
+				   		   + "'" + producto.getImagen() + "', "
+				   		   + "'" + producto.getCategoria().getId() + "');";
+		return modify(sql);
+	}
+	
+	public boolean updateProducto(ProductoBean producto) {
+		String sql = "UPDATE producto "
+				   + "SET  nombre =  '" + producto.getNombre() + "', "
+				   		+ "descripcion =  '" + producto.getDescripcion() + "', "
+				   		+ "precio =  '" + producto.getPrecio() + "', "
+				   		+ "imagen =  '" + producto.getImagen() + "',"
+				   		+ "idCategoria = '" + producto.getCategoria().getId() + "' "
+				   		+ "WHERE  id=" + producto.getId() + ";";
+		
+		return modify(sql);
+	}
+	
+	public boolean deleteProducto(int id) {
+		String sql = "DELETE FROM tutorias WHERE id=" + id;
+		return modify(sql);
+	}
+	
+	
+	public ProductoBean selectProducto(int id) {
+		String sql = "SELECT * "
+				   + "FROM producto p, categoria c "
+				   + "WHERE p.id=" + id + " "
+				   + "AND p.idCategoria = c.id";
+		return query(sql).get(0);
+	}
+	
+	public ArrayList<ProductoBean> selectProductos(int idCategoria) {
+		String sql = "SELECT * "
+				   + "FROM producto p, categoria c "
+				   + "WHERE p.idCategoria=" + idCategoria + " "
+				   + "AND p.idCategoria = c.id";
+		return query(sql);		
+	}
+	
+	public ArrayList<ProductoBean> selectProductosNovedades(int cantidad) {
+		String sql = "SELECT * "
+				   + "FROM producto p, categoria c "
+				   + "WHERE p.idCategoria = c.id "
+//				   + "ORDER BY p.id DESC "
+				   + "ORDER BY descripcion "
+				   + "LIMIT 0 , "+ cantidad + ";";
+		return query(sql);		
+	}
 	
 	
 	
@@ -27,11 +77,13 @@ public class ProductoDao extends Dao {
 			ResultSet res = stm.executeQuery(sql);
 			while(res.next()){
 				existe = true;
-				categoriaBean.setId(res.getInt("idCat"));
-				categoriaBean.setNombre(res.getString("nombreCat"));
+				CategoriaBean categoriaBean = new CategoriaBean();
+				categoriaBean.setId(res.getInt("c.id"));
+				categoriaBean.setNombre(res.getString("c.nombre"));
 				
-				productoBean.setId(res.getInt("id"));
-				productoBean.setNombre(res.getString("nombre"));
+				ProductoBean productoBean = new ProductoBean();
+				productoBean.setId(res.getInt("p.id"));
+				productoBean.setNombre(res.getString("p.nombre"));
 				productoBean.setDescripcion(res.getString("descripcion"));
 				productoBean.setPrecio(res.getDouble("precio"));
 				productoBean.setImagen(res.getString("imagen"));
