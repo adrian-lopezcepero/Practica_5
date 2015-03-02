@@ -15,10 +15,10 @@ public class CategoriaDao extends Dao {
 		return query(sql);
 	}
 
-	public CategoriaBean selectCategoria(String nombre) {
+	public CategoriaBean selectCategoria(int idCat) {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM categoria "
-					+ "WHERE nombre LIKE '" + nombre + "'";
+					+ "WHERE id = '" + idCat + "'";
 		return (query(sql) != null) ? query(sql).get(0) : null;
 	}
 

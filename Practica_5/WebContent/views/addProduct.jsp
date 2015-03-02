@@ -1,3 +1,6 @@
+<%@page import="modelo.beans.CategoriaBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Logica"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,8 +14,8 @@
 <title>MQM</title>
 </head>
 <body>
-	${productoModificar }
-	<form action="../Products" method="multipart/form-data">
+	<form action="../UploadFile" method="post"
+		enctype="multipart/form-data">
 		<label for="name">Nombre:</label>
 		<input type="text" id="name" name="name"
 			value="${productoModificar.nombre }" />
@@ -27,11 +30,31 @@
 		<br>
 		<label for="image">Imagen:</label>
 		<input type="file" id="image" name="image"
-			value="${productoModificar.imagen }" />
+			value="${productoModificar.imagen }"
+			title="${productoModificar.imagen }" />
 		<br>
-		<label for="category">Categoría:</label>
-		<input type="text" id="category" name="category"
-			value="${productoModificar.cateforia.nombre }" />
+		<%
+			Logica logica = new Logica();
+			// 			ArrayList<CategoriaBean> categorias = logica.getCategorias();
+			ArrayList<CategoriaBean> categorias = new ArrayList<CategoriaBean>();
+			categorias.add(new CategoriaBean(1, "Android"));
+			categorias.add(new CategoriaBean(2, "Windows Phone"));
+			categorias.add(new CategoriaBean(3, "Iphone"));
+
+			pageContext.setAttribute("categorias", categorias);
+		%>
+		<label>Categoría</label>
+		<select name="category">
+			<optgroup label="Categoría">
+				<c:forEach var="category" items="${categorias }">
+					<c:set var="isSelected"></c:set>
+					<c:if test="${category.id == productoModificar.categoria.id}">
+						<c:set var="isSelected">selected="selected"</c:set>
+					</c:if>
+					<option value="${category.id }" ${isSelected }>${category.nombre }</option>
+				</c:forEach>
+			</optgroup>
+		</select>
 		<br>
 		<c:choose>
 			<c:when test="${productoModificar != null }">

@@ -38,7 +38,8 @@
 				<c:forEach var="usuario" items="${sessionScope.allUsers }" varStatus="status">
 					<tr>
 						<td>
-							<input type="radio" name="userSelected" value="${status.count - 1}"
+							<input type="radio" name="userSelected"
+								value="${status.count - 1}" required="required"
 								id="${usuario.id }">
 						</td>
 						<td>${usuario.nombre }</td>

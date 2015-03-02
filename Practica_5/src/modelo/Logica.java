@@ -57,25 +57,6 @@ public class Logica {
 		return this.usuarioDao.updateUsuario(usuarioBean);
 	}
 
-//	public UsuarioBean getLoginResponse(String alias, String clave,
-//			UsuariosBean usuariosBean) {
-//		// Comprueba que el usuario existe
-//		ArrayList<UsuarioBean> usuariosLogeados = usuariosBean.getLoggedUsers();
-//		for (int i = 0; i < usuariosLogeados.size(); i++) {
-//			UsuarioBean usuarioBean = usuariosLogeados.get(i);
-//			if (usuarioBean.getAlias().equals(alias)
-//					&& usuarioBean.getClave().equals(clave)) {
-//				return usuarioBean;
-//			}
-//		}
-//		return null;
-//	}
-
-//	public boolean isSameSession(String ultimaSesion, String id) {
-//		// TODO Auto-generated method stub
-//		return ultimaSesion.equals(id);
-//	}
-
 	public UsuarioBean verificaUsuario(String alias, String clave) {
 		// TODO Auto-generated method stub
 		UsuarioBean selectUsuario = usuarioDao.selectUsuario(alias, clave);
@@ -98,9 +79,11 @@ public class Logica {
 	public ArrayList<ProductoBean> getProductos() {
 		return productoDao.selectAllProductos();
 	}
-	
-	public CategoriaBean getCategoria(String nombre) {
-		return categoriaDao.selectCategoria(nombre);
+
+
+	public CategoriaBean selectCategoria(int idCat) {
+		// TODO Auto-generated method stub
+		return categoriaDao.selectCategoria(idCat);
 	}
 
 }
