@@ -64,10 +64,10 @@ public class Products extends HttpServlet {
 			ArrayList<ProductoBean> products = (ArrayList<ProductoBean>) session
 					.getAttribute("allProducts");
 			ProductoBean productoSeleccionado = products.get(Integer
-					.parseInt(request.getParameter("userSelected")));
-			logica.deleteUsuario(productoSeleccionado.getId());
+					.parseInt(request.getParameter("productSelected")));
+			logica.deleteProducto(productoSeleccionado.getId());
 			// Vuelve a recargar la página para comprobar que se ha borrado
-			response.sendRedirect("Products?getProducts=true");
+			response.sendRedirect("Products?getAllProducts=true");
 
 		}
 		if (request.getParameter("sendNew") != null) {

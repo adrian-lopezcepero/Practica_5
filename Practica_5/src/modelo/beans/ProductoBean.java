@@ -65,6 +65,14 @@ public class ProductoBean implements Serializable {
 		this.categoriaBean = categoriaBean;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductoBean [id=" + this.id + ", nombre=" + this.nombre
+				+ ", descripcion=" + this.descripcion + ", precio="
+				+ this.precio + ", imagen=" + this.imagen + ", categoriaBean="
+				+ this.categoriaBean + "]";
+	}
+
 	
 
 }

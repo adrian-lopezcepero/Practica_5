@@ -16,7 +16,7 @@ import modelo.beans.UsuarioBean;
 /**
  * Servlet implementation class Products
  */
-@WebServlet("/Products")
+@WebServlet("/Users")
 public class Users extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Logica logica;

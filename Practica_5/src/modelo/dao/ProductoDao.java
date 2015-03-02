@@ -35,7 +35,7 @@ public class ProductoDao extends Dao {
 	}
 	
 	public boolean deleteProducto(int id) {
-		String sql = "DELETE FROM tutorias WHERE id=" + id;
+		String sql = "DELETE FROM producto WHERE id=" + id;
 		return modify(sql);
 	}
 	

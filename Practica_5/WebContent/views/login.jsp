@@ -20,7 +20,7 @@
 						</c:url>
 						<a href="${admin }">Administrar usuarios</a>
 						<c:url var="products" value="Products">
-							<c:param name="getProducts">true</c:param>
+							<c:param name="getAllProducts">true</c:param>
 						</c:url>
 						<a href="${products }">Administrar productos</a>
 					</c:when>

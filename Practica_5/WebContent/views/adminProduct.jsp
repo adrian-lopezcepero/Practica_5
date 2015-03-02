@@ -34,7 +34,7 @@
 					<th>CATEGORÍA</th>
 				</tr>
 
-				<c:forEach var="producto" items="${sessionScope.allUsers }" varStatus="status">
+				<c:forEach var="producto" items="${sessionScope.allProducts }" varStatus="status">
 					<tr>
 						<td>
 							<input type="radio" name="productSelected" value="${status.count - 1}"
@@ -44,7 +44,7 @@
 						<td>${producto.descripcion }</td>
 						<td>${producto.precio }</td>
 						<td>${producto.imagen }</td>
-						<td>${producto.categoriaBean.nombre }</td>
+						<td>${producto.categoria.nombre }</td>
 					</tr>
 
 				</c:forEach>
