@@ -6,8 +6,8 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 
-<%-- ${sessionScope.usuario } ${sessionScope.admin} --%>
-<%-- ${applicationScope.isLogin.nombre } ${sessionScope.sameSession } --%>
+${sessionScope.usuario } ${sessionScope.admin}
+${applicationScope.isLogin.nombre } ${sessionScope.sameSession }
 <section id="loginContainer">
 	<form action="Login" method="post">
 		<c:choose>

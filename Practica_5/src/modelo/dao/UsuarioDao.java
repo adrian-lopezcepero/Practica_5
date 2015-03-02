@@ -46,7 +46,7 @@ public class UsuarioDao extends Dao {
 	public UsuarioBean selectUsuario(String alias, String clave) {
 		String sql = "SELECT * FROM usuario " + "WHERE alias LIKE '" + alias
 				+ "' " + "AND clave LIKE '" + clave + "'";
-		return query(sql) != null ? query(sql).get(0) : null;
+		return query(sql) != null && query(sql).size() != 0 ? query(sql).get(0) : null;
 	}
 
 	/** Method for SELECT Statements */
