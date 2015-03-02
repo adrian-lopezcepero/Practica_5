@@ -6,56 +6,47 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 
-
-<jsp:useBean id="usuarioBean" class="modelo.beans.UsuarioBean"
-	scope="session"></jsp:useBean>
-
+<%-- ${sessionScope.usuario } ${sessionScope.admin} --%>
+<%-- ${applicationScope.isLogin.nombre } ${sessionScope.sameSession } --%>
 <section id="loginContainer">
 	<form action="Login" method="post">
-		<c:if test="${!sessionScope.isLogin }">
-			<div>
-				<label for="user">User</label>
-				<input type="text" id="user" name="alias" />
-			</div>
-			<div>
-				<label for="password">Password</label>
-				<input type="password" id="password" name="clave" />
-			</div>
-			<button id="login" name="login" type="submit">Login</button>
-		</c:if>
-
+		<%-- 		<c:choose> --%>
+		<%-- 			<c:when test="${sessionScope.sameSession == false }"> --%>
+		<!-- 				<span>Ya hay un usuario logeado en otra sesión.</span> -->
+		<%-- 			</c:when> --%>
+		<%-- 			<c:otherwise> --%>
 		<c:choose>
-			<c:when test="${!sessionScope.isSameSession }">
-				<span>Ya estás logeado en otra sesión</span>
-				<button id="logOut" name="logOut" type="submit">Log out</button>
-			</c:when>
-			<c:otherwise>
+			<c:when test="${sessionScope.usuario }">
 				<c:choose>
-					<c:when test="${sessionScope.isLogin }">
-
-						<c:choose>
-							<c:when test="${sessionScope.isAdmin }">
-								<span>Bienvenido ${usuarioBean.alias }</span>
-								<c:url var="admin" value="Users">
-									<c:param name="getAllUsers">true</c:param>
-								</c:url>
-								<a href="${admin }">Administrar usuarios</a>
-								<c:url var="product" value="Products">
-									<c:param name="getAllProducts">true</c:param>
-								</c:url>
-								<a href="${admin }">Administrar usuarios</a>
-							</c:when>
-							<c:otherwise>
-								<span>Bienvenido ${usuarioBean.alias }</span>
-							</c:otherwise>
-						</c:choose>
-						<button id="logOut" name="logOut" type="submit">Log out</button>
+					<c:when test="${sessionScope.admin}">
+						<span>Bienvenido ${applicationScope.isLogin.nombre }</span>
+						<c:url var="admin" value="Users">
+							<c:param name="getAllUsers">true</c:param>
+						</c:url>
+						<a href="${admin }">Administrar usuarios</a>
 					</c:when>
 					<c:otherwise>
-						<span>No estás registrado</span>
+						<span>Bienvenido ${applicationScope.isLogin.nombre }</span>
 					</c:otherwise>
 				</c:choose>
+				<button id="logOut" name="logOut" type="submit">Logout</button>
+			</c:when>
+			<c:otherwise>
+				<div>
+					<label for="user">User</label>
+					<input type="text" id="user" name="alias" />
+				</div>
+				<div>
+					<label for="password">Password</label>
+					<input type="password" id="password" name="clave" />
+				</div>
+				<button id="login" name="login" type="submit">Login</button>
+				<c:if test="${sessionScope.sameSession == false }">
+					<span>Ya hay un usuario logeado en otra sesión.</span>
+				</c:if>
 			</c:otherwise>
 		</c:choose>
+		<%-- 			</c:otherwise> --%>
+		<%-- 		</c:choose> --%>
 	</form>
 </section>

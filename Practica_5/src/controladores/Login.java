@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String alias;
 	private String clave;
-	private UsuariosBean usuariosBean;
+	private UsuarioBean isLogin;
 	private Logica logica;
 
 	/**
@@ -55,66 +55,47 @@ public class Login extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		// En primer lugar obtenemos los usuarios que están logeados.
-		usuariosBean = (UsuariosBean) getServletContext().getAttribute(
-				"usuariosBean");
-		if (usuariosBean == null) {
-			usuariosBean = new UsuariosBean();
-		}
 		// Obtenemos el alias y la clave.
 		alias = request.getParameter("alias");
 		clave = request.getParameter("clave");
 
 		if (request.getParameter("login") != null) {
-			tryLogin(request, session);
-			response.sendRedirect("index.jsp");
-		}
-		if (request.getParameter("logOut") != null) {
-			UsuarioBean usuarioBean = (UsuarioBean) session
-					.getAttribute("usuarioBean");
-			usuariosBean.deleteUser(usuarioBean);
-			getServletContext().setAttribute("usuariosBean", usuariosBean);
-			session.setAttribute("usuarioBean", null);
-			session.setAttribute("isLogin", false);
-			session.setAttribute("isSameSession",true);
-			response.sendRedirect("index.jsp");
-		}
-
-	}
-
-	/**
-	 * Check if the user is already logged and prevent a new login if the user
-	 * has another session.
-	 * 
-	 * @param request
-	 * @param session
-	 */
-	private void tryLogin(HttpServletRequest request, HttpSession session) {
-
-		// Comprobamos si el usuario está ya logeado
-		UsuarioBean userLogged = logica.getLoginResponse(alias, clave,
-				usuariosBean);
-		if (userLogged != null) {
-			session.setAttribute("isSameSession", userLogged.getSessionId()
-					.equals(session.getId()));
-
-		}
-		else {
-			// El usuario no está logeado
-			// Comprueba que existe el usuario
-			UsuarioBean usuarioBean = logica.verificaUsuario(alias, clave);
-			if (usuarioBean != null) {
-				session.setAttribute("isAdmin", logica.isAdmin(usuarioBean));
-				session.setAttribute("isLogin", true);
-				usuarioBean.setSessionId(session.getId());
-				session.setAttribute("usuarioBean", usuarioBean);
-				usuariosBean.getLoggedUsers().add(usuarioBean);
-				getServletContext().setAttribute("usuariosBean", usuariosBean);
+			// En primer lugar comprobamos que no hay un usuario logeado con la
+			// variable de aplcación.
+			isLogin = (UsuarioBean) getServletContext().getAttribute("isLogin");
+			if (isLogin == null) {
+				boolean admin = false;
+				boolean usuario = false;
+				// Comprobamos si el usuario existe
+				UsuarioBean user = logica.verificaUsuario(alias, clave);
+				if (user != null) {
+					user.setSessionId(session.getId());
+					getServletContext().setAttribute("isLogin", user);
+					usuario = true;
+					// Comprobamos is es el Admin
+					if (user.getAlias().equals("admin")) {
+						admin = true;
+					}
+				}
+				session.setAttribute("admin", admin);
+				session.setAttribute("usuario", usuario);
 			}
 			else {
-				// El usuario no existe, impedimos que inicie sesión.
-				session.setAttribute("isLogin", false);
+				boolean sameSession = isLogin.getSessionId().equals(
+						session.getId());
+				session.setAttribute("sameSession", sameSession);
 			}
+			response.sendRedirect("index.jsp");
 		}
+
+		if (request.getParameter("logOut") != null) {
+			getServletContext().removeAttribute("isLogin");
+			session.removeAttribute("admin");
+			session.removeAttribute("usuario");
+			session.removeAttribute("sameSession");
+			response.sendRedirect("index.jsp");
+		}
+
 	}
+
 }
