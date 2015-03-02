@@ -10,6 +10,11 @@
 <%-- ${applicationScope.isLogin.nombre } ${sessionScope.sameSession } --%>
 <section id="loginContainer">
 	<form action="Login" method="post">
+		<%-- 		<c:choose> --%>
+		<%-- 			<c:when test="${sessionScope.sameSession == false }"> --%>
+		<!-- 				<span>Ya hay un usuario logeado en otra sesión.</span> -->
+		<%-- 			</c:when> --%>
+		<%-- 			<c:otherwise> --%>
 		<c:choose>
 			<c:when test="${sessionScope.usuario }">
 				<c:choose>
@@ -19,10 +24,6 @@
 							<c:param name="getAllUsers">true</c:param>
 						</c:url>
 						<a href="${admin }">Administrar usuarios</a>
-						<c:url var="products" value="Products">
-							<c:param name="getProducts">true</c:param>
-						</c:url>
-						<a href="${products }">Administrar productos</a>
 					</c:when>
 					<c:otherwise>
 						<span>Bienvenido ${applicationScope.isLogin.nombre }</span>
@@ -45,5 +46,7 @@
 				</c:if>
 			</c:otherwise>
 		</c:choose>
+		<%-- 			</c:otherwise> --%>
+		<%-- 		</c:choose> --%>
 	</form>
 </section>

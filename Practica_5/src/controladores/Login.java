@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import modelo.Logica;
 import modelo.beans.UsuarioBean;
+import modelo.beans.UsuariosBean;
 
 /**
  * Servlet implementation class UsuarioBean

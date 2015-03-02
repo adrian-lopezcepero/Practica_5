@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import modelo.beans.CategoriaBean;
 import modelo.beans.ProductoBean;
-import modelo.beans.UsuarioBean;
 import modelo.conexion.MySQLConnection;
 
 public class ProductoDao extends Dao {
@@ -64,13 +63,6 @@ public class ProductoDao extends Dao {
 				   + "ORDER BY descripcion "
 				   + "LIMIT 0 , "+ cantidad + ";";
 		return query(sql);		
-	}
-	
-	public ArrayList<ProductoBean> selectAllProductos() {
-		String sql = "SELECT * "
-				   + "FROM producto p, categoria c "
-				   + "WHERE p.idCategoria = c.id";
-		return query(sql);
 	}
 	
 	
