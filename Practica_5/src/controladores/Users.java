@@ -14,9 +14,9 @@ import modelo.Logica;
 import modelo.beans.UsuarioBean;
 
 /**
- * Servlet implementation class Users
+ * Servlet implementation class Products
  */
-@WebServlet("/Users")
+@WebServlet("/Products")
 public class Users extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Logica logica;
@@ -66,7 +66,7 @@ public class Users extends HttpServlet {
 					.parseInt(request.getParameter("userSelected")));
 			logica.deleteUsuario(usuarioSeleccionado.getId());
 			// Vuelve a recargar la página para comprobar que se ha borrado
-			response.sendRedirect("Users?getAllUsers=true");
+			response.sendRedirect("Products?getAllUsers=true");
 
 		}
 		if (request.getParameter("sendNew") != null) {
@@ -79,7 +79,7 @@ public class Users extends HttpServlet {
 			System.out.println(bean);
 			logica.insertUsuario(bean);
 			// Vuelve a recargar la página para comprobar que se ha añadido
-			response.sendRedirect("Users?getAllUsers=true");
+			response.sendRedirect("Products?getAllUsers=true");
 			
 		}
 		if (request.getParameter("sendModify") != null) {
@@ -92,7 +92,7 @@ public class Users extends HttpServlet {
 							.getParameter("password"), request
 							.getParameter("address")));
 			// Vuelve a recargar la página para comprobar que se ha modificado
-			response.sendRedirect("Users?getAllUsers=true");
+			response.sendRedirect("Products?getAllUsers=true");
 		}
 
 	}
