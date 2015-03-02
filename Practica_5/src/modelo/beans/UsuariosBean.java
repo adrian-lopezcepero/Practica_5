@@ -2,10 +2,7 @@ package modelo.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 public class UsuariosBean implements Serializable {
 

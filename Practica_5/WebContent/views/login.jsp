@@ -40,9 +40,11 @@
 					<input type="password" id="password" name="clave" />
 				</div>
 				<button id="login" name="login" type="submit">Login</button>
-				<c:if test="${sessionScope.sameSession == false }">
-					<span>Ya hay un usuario logeado en otra sesión.</span>
-				</c:if>
+				<c:choose>
+					<c:when test="${sessionScope.sameSession == false }">
+						<span>Ya hay un usuario logeado en otra sesión.</span>
+					</c:when>
+				</c:choose>
 			</c:otherwise>
 		</c:choose>
 	</form>

@@ -3,9 +3,9 @@ package modelo;
 import java.util.ArrayList;
 
 import modelo.beans.CategoriaBean;
+import modelo.beans.PedidoBean;
 import modelo.beans.ProductoBean;
 import modelo.beans.UsuarioBean;
-import modelo.beans.UsuariosBean;
 import modelo.dao.CategoriaDao;
 import modelo.dao.PedidoDao;
 import modelo.dao.ProductoDao;
@@ -65,25 +65,45 @@ public class Logica {
 		}
 		return null;
 	}
-//
-//	public boolean isAdmin(UsuarioBean usuarioBean) {
-//		// TODO Auto-generated method stub
-//		return usuarioBean.getAlias().equals("admin");
-//	}
 
 	public ArrayList<UsuarioBean> getUsuarios() {
 		// TODO Auto-generated method stub
 		return usuarioDao.selectAllUsuarios();
 	}
-	
+
 	public ArrayList<ProductoBean> getProductos() {
 		return productoDao.selectAllProductos();
 	}
-
 
 	public CategoriaBean selectCategoria(int idCat) {
 		// TODO Auto-generated method stub
 		return categoriaDao.selectCategoria(idCat);
 	}
 
+	// ANTONIO
+
+	// Productos
+	public ArrayList<ProductoBean> getNovedades(int cantidad) {
+		return productoDao.selectProductosNovedades(cantidad);
+	}
+
+	public ArrayList<ProductoBean> getProductos(int idCategoria) {
+		return productoDao.selectProductos(idCategoria);
+	}
+
+	public ProductoBean setProducto(int id, int cantidad) {
+		ProductoBean producto = this.productoDao.selectProducto(id);
+		producto.setCantidad(cantidad);
+		return producto;
+	}
+
+	// Categorias
+	public ArrayList<CategoriaBean> getCategorias() {
+		return categoriaDao.selectAllCategorias();
+	}
+
+	// Pedidos
+	public boolean insertPedido(PedidoBean pedido) {
+		return this.pedidoDao.insertPedido(pedido);
+	}
 }

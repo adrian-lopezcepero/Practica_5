@@ -1,7 +1,6 @@
 package modelo.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class LineaPedidoBean implements Serializable {
 

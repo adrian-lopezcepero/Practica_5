@@ -1,29 +1,18 @@
 package modelo.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.beans.CategoriaBean;
 import modelo.beans.LineaPedidoBean;
 import modelo.beans.PedidoBean;
-import modelo.beans.ProductoBean;
-import modelo.beans.UsuarioBean;
-import modelo.conexion.MySQLConnection;
 
 public class PedidoDao extends Dao {
-//	private UsuarioBean usuarioBean = new UsuarioBean();
-//	private CategoriaBean categoriaBean = new CategoriaBean();
-//	private ArrayList<LineaPedidoBean> lineaPedidoBeans = new ArrayList<LineaPedidoBean>();
-//	private PedidoBean pedidoBean = new PedidoBean();
 	
 	public boolean insertPedido(PedidoBean pedido) {
 		String sql1 = "INSERT INTO pedido (importe, idUsuario) "
-					+ "VALUES ('" + pedido.getImporte() + "', '" + pedido.getUsuarioBean().getId() + "');";
+					+ "VALUES ('" + pedido.getImporte() + "', '" + pedido.getUsuario().getId() + "');";
 
 		String sql2 = "INSERT INTO lineapedido (idPedido, idLineaPedido, cantidad, idProducto) ";
-		ArrayList<LineaPedidoBean> lineas = pedido.getLineaPedidoBeans();
+		ArrayList<LineaPedidoBean> lineas = pedido.getLineasPedido();
 		for (LineaPedidoBean linea : lineas) {
 					sql2 += "		  VALUES (((SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES "
 						  + "                   WHERE TABLE_SCHEMA = '" + conex.getDATABASE() + "' AND TABLE_NAME = 'pedido') - 1),"

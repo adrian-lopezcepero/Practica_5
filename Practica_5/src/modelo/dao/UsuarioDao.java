@@ -9,7 +9,6 @@ import modelo.beans.UsuarioBean;
 import modelo.conexion.MySQLConnection;
 
 public class UsuarioDao extends Dao {
-	private UsuarioBean usuarioBean = new UsuarioBean();
 
 	public boolean insertUsuario(UsuarioBean usuarioBean) {
 		String sql = "INSERT INTO usuario SET nombre='"

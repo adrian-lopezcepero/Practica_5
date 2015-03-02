@@ -11,21 +11,21 @@ public class PedidoBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private UsuarioBean usuarioBean;
+	private UsuarioBean usuario;
 	private Calendar fecha;
-	private ArrayList<LineaPedidoBean> lineaPedidoBeans;
+	private ArrayList<LineaPedidoBean> lineasPedido;
 	private Double importe;
 
 	public PedidoBean() {
 	}
 
-	public PedidoBean(int id, UsuarioBean usuarioBean, Calendar fecha,
-			ArrayList<LineaPedidoBean> lineaPedidoBeans, Double importe) {
+	public PedidoBean(int id, UsuarioBean usuario, Calendar fecha,
+			ArrayList<LineaPedidoBean> lineasPedido, Double importe) {
 		super();
 		this.id = id;
-		this.usuarioBean = usuarioBean;
+		this.usuario = usuario;
 		this.fecha = fecha;
-		this.lineaPedidoBeans = lineaPedidoBeans;
+		this.lineasPedido = lineasPedido;
 		this.importe = importe;
 	}
 
@@ -37,6 +37,14 @@ public class PedidoBean implements Serializable {
 		this.id = id;
 	}
 
+	public UsuarioBean getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(UsuarioBean usuario) {
+		this.usuario = usuario;
+	}
+	
 	public Calendar getFecha() {
 		return this.fecha;
 	}
@@ -45,12 +53,12 @@ public class PedidoBean implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public ArrayList<LineaPedidoBean> getLineaPedidos() {
-		return this.lineaPedidoBeans;
+	public ArrayList<LineaPedidoBean> getLineasPedido() {
+		return this.lineasPedido;
 	}
 
-	public void setLineaPedidos(ArrayList<LineaPedidoBean> lineaPedidoBeans) {
-		this.lineaPedidoBeans = lineaPedidoBeans;
+	public void setLineasPedido(ArrayList<LineaPedidoBean> lineasPedido) {
+		this.lineasPedido = lineasPedido;
 	}
 
 	public Double getImporte() {
@@ -63,25 +71,8 @@ public class PedidoBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PedidoBean [id=" + this.id + ", usuarioBean=" + this.usuarioBean
-				+ ", fecha=" + this.fecha + ", lineaPedidoBeans="
-				+ this.lineaPedidoBeans + ", importe=" + this.importe + "]";
+		return "PedidoBean [id=" + this.id + ", usuario=" + this.usuario
+				+ ", fecha=" + this.fecha + ", lineasPedido="
+				+ this.lineasPedido + ", importe=" + this.importe + "]";
 	}
-
-	public UsuarioBean getUsuarioBean() {
-		return this.usuarioBean;
-	}
-
-	public void setUsuarioBean(UsuarioBean usuarioBean) {
-		this.usuarioBean = usuarioBean;
-	}
-
-	public ArrayList<LineaPedidoBean> getLineaPedidoBeans() {
-		return this.lineaPedidoBeans;
-	}
-
-	public void setLineaPedidoBeans(ArrayList<LineaPedidoBean> lineaPedidoBeans) {
-		this.lineaPedidoBeans = lineaPedidoBeans;
-	}
-
 }

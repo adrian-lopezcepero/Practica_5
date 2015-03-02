@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import modelo.beans.CategoriaBean;
 import modelo.beans.ProductoBean;
-import modelo.beans.UsuarioBean;
 import modelo.conexion.MySQLConnection;
 
 public class ProductoDao extends Dao {
