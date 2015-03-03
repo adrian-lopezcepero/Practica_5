@@ -15,7 +15,7 @@ header, nav, section, aside, footer {
 	width: 70%;
 }
 
-#loginCartContainer section#loginContainer div{
+#loginCartContainer section#loginContainer div {
 	display: inline-block;
 }
 
@@ -26,4 +26,31 @@ header, nav, section, aside, footer {
 #cartContainer img {
 	min-width: 20px;
 	width: 10%;
+}
+
+#products #categories, #products #productsContainer, #productsContainer .product
+	{
+	display: inline-block;
+	vertical-align: top;
+}
+
+#products #categories, #products #productsContainer {
+	width: 20%;
+	text-align: left;
+}
+
+#products #categories nav li {
+	text-align: left;
+}
+
+#products #productsContainer {
+	width: 75%;
+}
+
+#productsContainer .product {
+	width: 20%;
+}
+
+.product img {
+	width: 100%;
 }
