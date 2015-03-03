@@ -78,6 +78,7 @@ public class Login extends HttpServlet {
 				}
 				session.setAttribute("admin", admin);
 				session.setAttribute("usuario", usuario);
+				session.setAttribute("sameSession", true);
 			}
 			else {
 				boolean sameSession = isLogin.getSessionId().equals(

@@ -8,24 +8,23 @@
 <header>
 	<h1>MÁS QUE MÓVILES</h1>
 
-	<section id="newProdcuts">
-			<c:forEach items="${sessionScope.novedades}" var="prod">
-				<div>
-					<img alt="imagen de producto" src="${prod.imagen}">
-					<a
-						href="views/producto.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a>
-					<span>${prod.precio} €</span>
-					<form action="Pedidos" method="post">
-						<input type="hidden" name="prod" value="${prod.id}">
-						<input type="hidden" name="page" value="index.jsp">
-						<input type="hidden" name="cant" value="1">
-						<input type="submit" name="addCesta" value="Añadir a la Cesta" />
-					</form>
-				</div>
-			</c:forEach>
+<!-- 	<section id="newProdcuts"> -->
+<%-- 			<c:forEach items="${sessionScope.novedades}" var="prod"> --%>
+<!-- 				<div> -->
+<%-- 					<img alt="imagen de producto" src="${prod.imagen}"> --%>
+<!-- 					<a -->
+<%-- 						href="views/producto.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a> --%>
+<%-- 					<span>${prod.precio} €</span> --%>
+<!-- 					<form action="Pedidos" method="post"> -->
+<%-- 						<input type="hidden" name="prod" value="${prod.id}"> --%>
+<!-- 						<input type="hidden" name="page" value="index.jsp"> -->
+<!-- 						<input type="hidden" name="cant" value="1"> -->
+<!-- 						<input type="submit" name="addCesta" value="Añadir a la Cesta" /> -->
+<!-- 					</form> -->
+<!-- 				</div> -->
+<%-- 			</c:forEach> --%>
 
-		<%-- ${sessionScope.novedades} --%>
-	</section>
+<!-- 	</section> -->
 
 	<section id="loginCartContainer">
 		<c:import url="views/login.jsp"></c:import>
