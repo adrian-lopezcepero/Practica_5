@@ -8,13 +8,12 @@
 <section id="cartContainer">
 	<form action="Pedidos" method="post">
 		<img alt="imagen de carrito" src="img/shopping_cart.png">
-		<span id="productAmount">0</span>
+		<span id="productAmount">${param.cesta}</span>
 		<!-- 	Ver Cesta (boton) -->
 		<input type="hidden" name="page" value="index.jsp">
 		<c:choose>
 			<c:when test="${!empty param.cesta}">
-				<input type="submit" name="verCesta"
-					value="Ver Cesta (${param.cesta})" />
+				<input type="submit" name="verCesta" value="Pagar" />
 			</c:when>
 			<c:otherwise>
 				<input type="submit" name="verCesta" value="Ver Cesta" />
