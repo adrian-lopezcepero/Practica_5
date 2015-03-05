@@ -60,7 +60,7 @@
 					<input type="password" id="password" name="clave" />
 				</div>
 				<button id="login" name="login" type="submit">Login</button>
-				<span>Usuario o clave incorrectos</span>
+				<span id="incorrectUser">Usuario o clave incorrectos</span>
 			</c:when>
 		</c:choose>
 	</form>

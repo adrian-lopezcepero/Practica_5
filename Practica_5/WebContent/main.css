@@ -21,8 +21,8 @@ header h1 {
 	background-image: url("img/headerBackground.png")
 }
 
-#loginCartContainer, #categories, .product, .fotoramaBackground, section#adminUser,
-	div.table {
+#loginCartContainer, #categories, .product, .fotoramaBackground,
+	#adminUser, #adminUser section, div.table {
 	border: 1px solid #E4E4E4;
 	border-radius: 3px 3px 0px 0px;
 	box-shadow: 0px 2px 10px 0px gray;
@@ -45,6 +45,10 @@ header h1 {
 
 #loginCartContainer section#loginContainer div {
 	display: inline-block;
+}
+
+#loginCartContainer section#loginContainer #incorrectUser {
+	display: block;
 }
 
 #loginCartContainer section#cartContainer {
@@ -158,6 +162,26 @@ section#adminUser thead {
 	color: white;
 }
 
+section#adminUser section {
+	text-align: right;
+	min-width: 40%;
+}
+
+section#adminUser section label {
+	/* 	text-align: left; */
+	
+}
+
+section#adminUser section input, section#adminUser section select {
+	min-width: 70%;
+}
+
+section#adminUser section button {
+	min-width: 100px;
+	width: 20%;
+	margin: 4% 40% 2% 40%;
+}
+
 #loginContainer button, #adminUser .buttonContainer #remove {
 	background-color: #a52a2a;
 	top: -3px;
@@ -171,9 +195,10 @@ section#adminUser thead {
 	text-align: center;
 }
 
-.fotorama {
+.fotorama, #adminUser section {
 	width: 30%;
 	margin: 0 auto;
+	padding: 1%;
 }
 
 .fotorama__arr--next {
