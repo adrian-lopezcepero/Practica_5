@@ -7,51 +7,57 @@
 
 <!DOCTYPE html">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MQN</title>
-</head>
+
+<c:import url="head.jsp"></c:import>
+<c:import url="headerViews.jsp"></c:import>
+
 <body>
+	<section id="adminUser">
+		<form action="../Products" method="get">
+			<div class="buttonContainer">
+				<button id="add" name="add" type="submit"
+					formnovalidate="formnovalidate">Añadir producto</button>
+				<button id="modify" name="modify" type="submit">Modificar
+					producto</button>
+				<button id="remove" name="remove" type="submit">Borrar
+					producto</button>
+			</div>
 
+			<div class="table">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>NOMBRE</th>
+							<th>DESCRIPCIÓN</th>
+							<th>PRECIO</th>
+							<th>IMAGEN</th>
+							<th>CATEGORÍA</th>
+						</tr>
+					</thead>
 
+					<c:forEach var="producto" items="${sessionScope.allProducts }"
+						varStatus="status">
+						<tr>
+							<td>
+								<input type="radio" name="productSelected"
+									value="${status.count - 1}" required="required"
+									id="${producto.id }">
+							</td>
+							<td>${producto.nombre }</td>
+							<td>${producto.descripcion }</td>
+							<td>${producto.precio }</td>
+							<td>${producto.imagen }</td>
+							<td>${producto.categoria.nombre }</td>
+						</tr>
 
-	<form action="../Products" method="get">
-		<button id="add" name="add" type="submit"
-			formnovalidate="formnovalidate">Añadir producto</button>
-		<button id="modify" name="modify" type="submit">Modificar
-			producto</button>
-		<button id="remove" name="remove" type="submit">Borrar
-			producto</button>
+					</c:forEach>
 
-		<div id="table">
-			<table>
-				<tr>
-					<th></th>
-					<th>NOMBRE</th>
-					<th>DESCRIPCIÓN</th>
-					<th>PRECIO</th>
-					<th>IMAGEN</th>
-					<th>CATEGORÍA</th>
-				</tr>
-
-				<c:forEach var="producto" items="${sessionScope.allProducts }" varStatus="status">
-					<tr>
-						<td>
-							<input type="radio" name="productSelected"
-								value="${status.count - 1}" required="required"
-								id="${producto.id }">
-						</td>
-						<td>${producto.nombre }</td>
-						<td>${producto.descripcion }</td>
-						<td>${producto.precio }</td>
-						<td>${producto.imagen }</td>
-						<td>${producto.categoria.nombre }</td>
-					</tr>
-
-				</c:forEach>
-
-			</table>
-		</div>
-	</form>
+				</table>
+			</div>
+		</form>
+	</section>
+	
+	<c:import url="footer.jsp"></c:import>
 </body>
 </html>

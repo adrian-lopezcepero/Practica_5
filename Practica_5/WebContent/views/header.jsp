@@ -9,8 +9,8 @@
 	<h1>SMARTPHONE SHOP</h1>
 
 	<section id="loginCartContainer">
-		<c:import url="views/login.jsp"></c:import>
-		<c:import url="views/cart.jsp"></c:import>
+		<c:import url="/views/login.jsp"></c:import>
+		<c:import url="/views/cart.jsp"></c:import>
 	</section>
 
 	<div class="fotoramaBackground">
@@ -18,7 +18,8 @@
 			data-fit="scaledown" data-transition="crossfade" data-autoplay="true"
 			data-loop="true">
 			<c:forEach items="${sessionScope.novedades}" var="prod" end="3">
-				<img alt="imagen de producto" src="${prod.imagen}">
+				<img alt="imagen de producto"
+					src=" ${pageContext.request.contextPath}/${prod.imagen}">
 			</c:forEach>
 		</div>
 	</div>

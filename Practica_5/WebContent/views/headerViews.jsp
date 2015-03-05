@@ -10,7 +10,8 @@
 
 	<section id="loginCartContainer">
 		<c:import url="login.jsp"></c:import>
-		<c:import url="cart.jsp"></c:import>
+		<c:url var="index" scope="session" value="/index.jsp"></c:url>
+		<a href="${index }">Ir a la página principal</a>
 	</section>
 
 </header>

@@ -10,52 +10,56 @@
 
 <html>
 
-<c:import url="headViews.jsp"></c:import>
+<c:import url="head.jsp"></c:import>
 <c:import url="headerViews.jsp"></c:import>
 
 <body>
+	<section id="adminUser">
+		<form action="${pageContext.request.contextPath}/Users" method="get">
+			<div class="buttonContainer">
+				<button id="add" name="add" type="submit"
+					formnovalidate="formnovalidate">Añadir usuario</button>
+				<button id="modify" name="modify" type="submit">Modificar
+					usuario</button>
+				<button id="remove" name="remove" type="submit">Borrar
+					usuario</button>
+			</div>
 
-	<form action="${pageContext.request.contextPath}/Users" method="get">
-		<button id="add" name="add" type="submit"
-			formnovalidate="formnovalidate">Añadir usuario</button>
-		<button id="modify" name="modify" type="submit">Modificar
-			usuario</button>
-		<button id="remove" name="remove" type="submit">Borrar
-			usuario</button>
+			<div class="table">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>NOMBRE</th>
+							<th>APELLIDOS</th>
+							<th>EMAIL</th>
+							<th>ALIAS</th>
+							<th>CLAVE</th>
+							<th>DIRECCIÓN</th>
+						</tr>
+					</thead>
+					<c:forEach var="usuario" items="${sessionScope.allUsers }"
+						varStatus="status">
+						<tr>
+							<td>
+								<input type="radio" name="userSelected"
+									value="${status.count - 1}" required="required"
+									id="${usuario.id }">
+							</td>
+							<td>${usuario.nombre }</td>
+							<td>${usuario.apellidos }</td>
+							<td>${usuario.email }</td>
+							<td>${usuario.alias }</td>
+							<td>${usuario.clave }</td>
+							<td>${usuario.direccion }</td>
+						</tr>
 
-		<div id="table">
-			<table>
-				<tr>
-					<th></th>
-					<th>NOMBRE</th>
-					<th>APELLIDOS</th>
-					<th>EMAIL</th>
-					<th>ALIAS</th>
-					<th>CLAVE</th>
-					<th>DIRECCIÓN</th>
-				</tr>
+					</c:forEach>
 
-				<c:forEach var="usuario" items="${sessionScope.allUsers }"
-					varStatus="status">
-					<tr>
-						<td>
-							<input type="radio" name="userSelected"
-								value="${status.count - 1}" required="required"
-								id="${usuario.id }">
-						</td>
-						<td>${usuario.nombre }</td>
-						<td>${usuario.apellidos }</td>
-						<td>${usuario.email }</td>
-						<td>${usuario.alias }</td>
-						<td>${usuario.clave }</td>
-						<td>${usuario.direccion }</td>
-					</tr>
-
-				</c:forEach>
-
-			</table>
-		</div>
-	</form>
+				</table>
+			</div>
+		</form>
+	</section>
 
 	<c:import url="footer.jsp"></c:import>
 </body>
