@@ -5,17 +5,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
-<!DOCTYPE html">
+
+<!DOCTYPE html>
+
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MQN</title>
-</head>
+
+<c:import url="headViews.jsp"></c:import>
+<c:import url="headerViews.jsp"></c:import>
+
 <body>
 
-
-
-	<form action="../Users" method="get">
+	<form action="${pageContext.request.contextPath}/Users" method="get">
 		<button id="add" name="add" type="submit"
 			formnovalidate="formnovalidate">Añadir usuario</button>
 		<button id="modify" name="modify" type="submit">Modificar
@@ -35,7 +35,8 @@
 					<th>DIRECCIÓN</th>
 				</tr>
 
-				<c:forEach var="usuario" items="${sessionScope.allUsers }" varStatus="status">
+				<c:forEach var="usuario" items="${sessionScope.allUsers }"
+					varStatus="status">
 					<tr>
 						<td>
 							<input type="radio" name="userSelected"
@@ -55,5 +56,7 @@
 			</table>
 		</div>
 	</form>
+
+	<c:import url="footer.jsp"></c:import>
 </body>
 </html>

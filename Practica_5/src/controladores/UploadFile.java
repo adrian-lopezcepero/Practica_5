@@ -133,6 +133,7 @@ public class UploadFile extends HttpServlet {
 				// String fieldName = fi.getFieldName();
 				String fileName = fi.getName();
 				file = new File(filePath + "/" + fileName);
+				System.out.println(file.getAbsolutePath());
 				try {
 					fi.write(file);
 				}

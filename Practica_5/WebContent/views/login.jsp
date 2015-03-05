@@ -9,7 +9,7 @@
 <%-- ${sessionScope.usuario } ${sessionScope.admin} --%>
 <%-- ${applicationScope.isLogin } ${sessionScope.sameSession } --%>
 <section id="loginContainer">
-	<form action="Login" method="post">
+	<form action="${pageContext.request.contextPath}/Login" method="post" >
 		<c:choose>
 			<c:when
 				test="${!sessionScope.sameSession &&  applicationScope.isLogin != null }">
@@ -21,11 +21,11 @@
 						<c:choose>
 							<c:when test="${sessionScope.admin}">
 								<span>Bienvenido ${applicationScope.isLogin.nombre }</span>
-								<c:url var="admin" value="Users">
+								<c:url var="admin" value="/Users">
 									<c:param name="getAllUsers">true</c:param>
 								</c:url>
 								<a href="${admin }">Administrar usuarios</a>
-								<c:url var="products" value="Products">
+								<c:url var="products" value="/Products">
 									<c:param name="getAllProducts">true</c:param>
 								</c:url>
 								<a href="${products }">Administrar productos</a>

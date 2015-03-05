@@ -9,17 +9,8 @@
 	<h1>SMARTPHONE SHOP</h1>
 
 	<section id="loginCartContainer">
-		<c:import url="views/login.jsp"></c:import>
-		<c:import url="views/cart.jsp"></c:import>
+		<c:import url="login.jsp"></c:import>
+		<c:import url="cart.jsp"></c:import>
 	</section>
 
-	<div class="fotoramaBackground">
-		<div class="fotorama" data-width="100%" data-ratio="800/600"
-			data-fit="scaledown" data-transition="crossfade" data-autoplay="true"
-			data-loop="true">
-			<c:forEach items="${sessionScope.novedades}" var="prod" end="3">
-				<img alt="imagen de producto" src="${prod.imagen}">
-			</c:forEach>
-		</div>
-	</div>
 </header>

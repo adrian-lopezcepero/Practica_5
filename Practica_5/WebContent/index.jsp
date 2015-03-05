@@ -19,20 +19,14 @@
 
 <!DOCTYPE html">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MQM</title>
-
-<link type="text/css" rel="stylesheet" href="main.css" />
-
-</head>
+<c:import url="views/head.jsp"></c:import>
 <body>
 
 	<section id="webContainer">
 
 		<c:import url="views/header.jsp"></c:import>
 
-		<c:import url="views/products.jsp"></c:import>
+		<c:import url="views/products.jsp?cat=${param.cat}"></c:import>
 
 		<c:import url="views/footer.jsp"></c:import>
 

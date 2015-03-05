@@ -80,6 +80,7 @@ public class Pedidos extends HttpServlet {
 		if (request.getParameter("comprar") != null) {
 			PedidoBean pedido = (PedidoBean) session.getAttribute("pedido"); 
 			logica.insertPedido(pedido);
+			session.removeAttribute("cesta");
 			// TODO enviar email
 			response.sendRedirect("views/comprar.jsp");
 		}
