@@ -110,7 +110,7 @@ public class Orders extends HttpServlet {
 			logic.insertPedido(pedido);
 			// Send the mail to admin
 			try {
-				this.sendEmail("Compra realizada", session, "alcg80@yahoo.es");
+				this.sendEmail("Compra realizada", session, "2dfs1011@gmail.com");
 			}
 			catch (MessagingException e) {
 				// TODO Auto-generated catch block
@@ -198,27 +198,28 @@ public class Orders extends HttpServlet {
 		output.append("PRODUCTOS\n\n");
 		PedidoBean pedido = (PedidoBean) httpSession.getAttribute("pedido");
 		ArrayList<PurchaseLineBean> lineasPedido = pedido.getLineasPedido();
-		output.append("NOMBRE");
-		output.append("\t");
-		output.append("PRECIO");
-		output.append("\t");
-		output.append("CANTIDAD");
-		output.append("\t");
-		output.append("IMPORTE");
-		output.append("\n");
-		for (PurchaseLineBean purchaseLineBean : lineasPedido) {
-			output.append(purchaseLineBean.getProducto().getNombre());
-			output.append("\t");
-			output.append(purchaseLineBean.getProducto().getPrecio());
-			output.append("\t");
-			output.append(purchaseLineBean.getCantidad());
-			output.append("\t");
-			output.append(purchaseLineBean.getProducto().getPrecio()
-					* purchaseLineBean.getCantidad());
-			output.append("\n");
-		}
-		output.append("\n\n");
-		output.append("TOTAL = " + pedido.getImporte());
+		 output.append("NOMBRE");
+		 output.append("\t");
+		 output.append("PRECIO");
+		 output.append("\t");
+		 output.append("CANTIDAD");
+		 output.append("\t");
+		 output.append("IMPORTE");
+		 output.append("\n");
+		 for (PurchaseLineBean purchaseLineBean : lineasPedido) {
+		 output.append(purchaseLineBean.getProducto().getNombre());
+		 output.append("\t");
+		 output.append(purchaseLineBean.getProducto().getPrecio());
+		 output.append("\t");
+		 output.append(purchaseLineBean.getCantidad());
+		 output.append("\t");
+		 output.append(purchaseLineBean.getProducto().getPrecio()
+		 * purchaseLineBean.getCantidad());
+		 output.append("\n");
+		 }
+		 output.append("\n\n");
+		 output.append("TOTAL = " + pedido.getImporte());
+
 		message.setText(output.toString());
 		Transport transport = session.getTransport("smtp");
 		transport.connect(MAILUSER, MAILPASS);
@@ -226,5 +227,4 @@ public class Orders extends HttpServlet {
 		transport.close();
 
 	}
-
 }
