@@ -9,8 +9,14 @@
 	<h1>SMARTPHONE SHOP</h1>
 
 	<section id="loginCartContainer">
+		<section id="home">
+			<c:url var="index" scope="session" value="/index.jsp"></c:url>
+			<a href="${index }">
+				<img alt="Image de home"
+					src="${pageContext.request.contextPath }/img/home.png">
+			</a>
+		</section>
 		<c:import url="login.jsp"></c:import>
-		<a href="${index }">Ir a la página principal</a>
 	</section>
 
 </header>
