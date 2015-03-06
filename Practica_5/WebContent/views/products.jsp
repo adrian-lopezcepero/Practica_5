@@ -36,10 +36,11 @@
 				<li>
 					<c:choose>
 						<c:when test="${!empty param.cat && param.cat != null}">
-							<a href="index.jsp">Todos</a>
+							<a href="index.jsp?cesta=${fn:length(sessionScope.cesta) }">Todos</a>
 						</c:when>
 						<c:otherwise>
-							<a class="categorySelected" style="color: yellow;" href="index.jsp">Todos</a>
+							<a class="categorySelected" style="color: yellow;"
+								href="index.jsp">Todos</a>
 						</c:otherwise>
 					</c:choose>
 				</li>
@@ -52,7 +53,8 @@
 								<a class="categorySelected" style="color: yellow;" href="">${categ.nombre}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="index.jsp?cat=${categ.id}">${categ.nombre}</a>
+								<a
+									href="index.jsp?cat=${categ.id}&cesta=${fn:length(sessionScope.cesta) }">${categ.nombre}</a>
 							</c:otherwise>
 						</c:choose>
 					</li>
@@ -65,11 +67,11 @@
 			<div class="product">
 				<div>
 					<img alt="imagen de producto" src="${prod.imagen}">
-					<a
-						href="views/product.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a>
+					<a href="views/product.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a>
 					<br>
 					<span class="price">${prod.precio} €</span>
-					<form action="${pageContext.request.contextPath}/Orders" method="post">
+					<form action="${pageContext.request.contextPath}/Orders"
+						method="post">
 						<input type="hidden" name="prod" value="${prod.id}">
 						<input type="hidden" name="page" value="index.jsp">
 						<input type="hidden" name="cant" value="1">

@@ -61,7 +61,9 @@
 				</span>
 				<!-- 				Debes estar logeado para poder comprar -->
 				<c:choose>
-					<c:when test="${applicationScope.isLogin != null}">
+					<%-- 					<c:when test="${applicationScope.isLogin != null}"> --%>
+
+					<c:when test="${sessionScope.usuario}">
 						<button type="submit" name="pay">Comprar</button>
 					</c:when>
 					<c:otherwise>
