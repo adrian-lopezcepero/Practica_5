@@ -92,7 +92,8 @@ public class Orders extends HttpServlet {
 						"pedido",
 						getPedidoFromCesta(cesta,
 								(UserBean) session.getAttribute("isLogin")));
-				response.sendRedirect("views/viewCart.jsp?cesta=" + cesta.size());
+				response.sendRedirect("views/viewCart.jsp?cesta="
+						+ cesta.size());
 			}
 			else {
 				String page = request.getParameter("page");
@@ -106,15 +107,15 @@ public class Orders extends HttpServlet {
 			PedidoBean pedido = (PedidoBean) session.getAttribute("pedido");
 			pedido.setUsuario((UserBean) getServletContext().getAttribute(
 					"isLogin"));
-//			logic.insertPedido(pedido);
-////			 Send the mail to admin
-//			try {
-//				this.sendEmail("Compra realizada", session, "alcg80@yahoo.es");
-//			}
-//			catch (MessagingException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			logic.insertPedido(pedido);
+			// Send the mail to admin
+			try {
+				this.sendEmail("Compra realizada", session, "alcg80@yahoo.es");
+			}
+			catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			session.removeAttribute("cesta");
 			response.sendRedirect("views/payment.jsp");
 		}
@@ -162,8 +163,8 @@ public class Orders extends HttpServlet {
 	}
 
 	/**
-	 * Devuelve el indice (id - 1) del ArrayList<PurchaseLineBean> si el producto
-	 * está duplicado en la cesta; si no, devuelve -1
+	 * Devuelve el indice (id - 1) del ArrayList<PurchaseLineBean> si el
+	 * producto está duplicado en la cesta; si no, devuelve -1
 	 */
 	private int estaDuplicado(ProductoBean producto,
 			ArrayList<PurchaseLineBean> lineasPedido) {
