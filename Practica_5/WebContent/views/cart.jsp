@@ -6,24 +6,17 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <section id="cartContainer">
-	<form action="Pedidos" method="post">
-		<img alt="imagen de carrito" src="img/shopping_cart.png">
+	<form action="${pageContext.request.contextPath}/Pedidos" method="post">
+		<img alt="imagen de carrito"
+			src="${pageContext.request.contextPath }/img/shopping_cart.png">
 		<span id="productAmount">${param.cesta}</span>
 		<!-- 	Ver Cesta (boton) -->
 		<input type="hidden" name="page" value="index.jsp">
-		<c:choose>
-			<c:when test="${!empty param.cesta}">
-				<input type="submit" name="verCesta" value="Pagar" />
-			</c:when>
-			<c:otherwise>
-				<input type="submit" name="verCesta" value="Ver Cesta" />
-			</c:otherwise>
-		</c:choose>
+		<button type="submit" name="verCesta">Pagar</button>
 	</form>
 
 	<!-- verCesta=false (cesta vacía) -->
 	<c:if test="${!empty param.verCesta}">
-		<div class="cestaVacia">No hay ningún producto añadido a la
-			cesta</div>
+		<div class="cestaVacia">No hay productos</div>
 	</c:if>
 </section>

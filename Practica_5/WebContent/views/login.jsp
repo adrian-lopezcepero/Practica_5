@@ -8,8 +8,9 @@
 
 <%-- ${sessionScope.usuario } ${sessionScope.admin} --%>
 <%-- ${applicationScope.isLogin } ${sessionScope.sameSession } --%>
+
 <section id="loginContainer">
-	<form action="${pageContext.request.contextPath}/Login" method="post" >
+	<form action="${pageContext.request.contextPath}/Login" method="post">
 		<c:choose>
 			<c:when
 				test="${!sessionScope.sameSession &&  applicationScope.isLogin != null }">

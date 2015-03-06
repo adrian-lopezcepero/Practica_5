@@ -39,6 +39,12 @@ header h1 {
 	display: inline-block;
 }
 
+#loginCartContainer section#home {
+	width: 5%;
+	text-align: center;
+	vertical-align: middle;
+}
+
 #loginCartContainer section#loginContainer {
 	width: 70%;
 }
@@ -52,10 +58,10 @@ header h1 {
 }
 
 #loginCartContainer section#cartContainer {
-	width: 25%;
+	width: 15%;
 }
 
-#cartContainer img {
+#cartContainer img, #home img {
 	min-width: 20px;
 	width: 10%;
 }
@@ -125,13 +131,28 @@ header h1 {
 }
 
 .product input[name=addCesta], #loginContainer a, #loginContainer button,
-	#adminUser button {
+	#adminUser button, #selectedProducts #total button, section#cartContainer button
+	{
 	border: 1px solid black;
 	background: #1d87be;
 	color: white;
 	border-radius: 5px;
 	padding: 1%;
 	text-shadow: 1px 1px 1px #000;
+}
+
+/* .productSelected { */
+/* 	width: 90%; */
+/* 	margin: auto; */
+/* } */
+#productContainer .product {
+	width: 60%;
+	margin: auto;
+	text-align: center;
+}
+
+.product #description {
+	text-align: justify;
 }
 
 section#adminUser div.buttonContainer {
@@ -141,23 +162,27 @@ section#adminUser div.buttonContainer {
 	margin: auto;
 }
 
-section#adminUser .table {
+.table {
 	padding: 2%;
 	width: 90%;
 	margin: auto;
 }
 
-section#adminUser .table table {
+.table table {
 	width: 100%;
 	text-align: justify;
 	border-collapse: collapse;
 }
 
-section#adminUser .table td {
+.table td {
 	padding: 1%;
 }
 
-section#adminUser thead {
+.table img {
+	max-width: 40px;
+}
+
+thead {
 	background-color: #00427c;
 	color: white;
 }
@@ -207,4 +232,15 @@ section#adminUser section button {
 
 .fotorama__arr--prev {
 	
+}
+
+#selectedProducts #total {
+	text-align: right;
+	width: 90%;
+	margin: auto;
+	padding: 2%;
+}
+
+#selectedProducts #total span {
+	font-weight: 900;
 }

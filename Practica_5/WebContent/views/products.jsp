@@ -66,7 +66,7 @@
 				<div>
 					<img alt="imagen de producto" src="${prod.imagen}">
 					<a
-						href="views/producto.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a>
+						href="views/product.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a>
 					<br>
 					<span class="price">${prod.precio} €</span>
 					<form action="Pedidos" method="post">
