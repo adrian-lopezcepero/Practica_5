@@ -10,7 +10,9 @@
 
 	<section id="loginCartContainer">
 		<section id="home">
-			<c:url var="index" scope="session" value="/index.jsp"></c:url>
+			<c:url var="index" scope="session" value="/index.jsp">
+				<c:param name="cesta" value="${ fn:length(sessionScope.cesta) }"></c:param>
+			</c:url>
 			<a href="${index }">
 				<img alt="Image de home"
 					src="${pageContext.request.contextPath }/img/home.png">

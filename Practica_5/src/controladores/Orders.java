@@ -65,8 +65,6 @@ public class Orders extends HttpServlet {
 			page += (page.equals("index.jsp")) ? "?cesta=" + cesta.size()
 					: "&cesta=" + cesta.size();
 			response.sendRedirect(page);
-			// System.out.println(page);
-			// System.out.println(cesta.toString());
 		}
 
 		if (request.getParameter("viewCart") != null) {
