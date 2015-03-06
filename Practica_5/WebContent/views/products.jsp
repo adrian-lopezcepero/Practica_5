@@ -1,4 +1,4 @@
-<%@page import="modelo.Logica"%>
+<%@page import="model.Logic"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +10,7 @@
 
 
 <%
-	Logica logica = new Logica();
+	Logic logica = new Logic();
 	String cat = request.getParameter("cat");
 %>
 <%
@@ -41,8 +41,7 @@
 							<a href="index.jsp?cesta=${fn:length(sessionScope.cesta) }">Todos</a>
 						</c:when>
 						<c:otherwise>
-							<a class="categorySelected" style="color: yellow;"
-								href="index.jsp">Todos</a>
+							<a class="categorySelected" href="index.jsp">Todos</a>
 						</c:otherwise>
 					</c:choose>
 				</li>
@@ -52,7 +51,7 @@
 							<c:when test="${!empty param.cat && param.cat == categ.id}">
 								<c:set scope="page" var="nombreCategoria"
 									value="${categ.nombre}"></c:set>
-								<a class="categorySelected" style="color: yellow;" href="">${categ.nombre}</a>
+								<a class="categorySelected" href="">${categ.nombre}</a>
 							</c:when>
 							<c:otherwise>
 								<a

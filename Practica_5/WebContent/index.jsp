@@ -1,4 +1,4 @@
-<%@page import="modelo.Logica"%>
+<%@page import="model.Logic"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -12,11 +12,11 @@
 
 <%
 	if (session.getAttribute("categorias") == null) {
-		Logica logica = new Logica();
+		Logic logica = new Logic();
 		session.setAttribute("categorias", logica.getCategorias());
 	}
 	if (session.getAttribute("novedades") == null) {
-		Logica logica = new Logica();
+		Logic logica = new Logic();
 		session.setAttribute("novedades", logica.getNovedades(8));
 	}
 %>

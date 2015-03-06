@@ -1,8 +1,8 @@
-package modelo.beans;
+package model.beans;
 
 import java.io.Serializable;
 
-public class CategoriaBean implements Serializable {
+public class CategoryBean implements Serializable {
 
 	/**
 	 * 
@@ -11,10 +11,10 @@ public class CategoriaBean implements Serializable {
 	private int id;
 	private String nombre;
 
-	public CategoriaBean() {
+	public CategoryBean() {
 	}
 
-	public CategoriaBean(int id, String nombre) {
+	public CategoryBean(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -38,7 +38,7 @@ public class CategoriaBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CategoriaBean [id=" + this.id + ", nombre=" + this.nombre + "]";
+		return "CategoryBean [id=" + this.id + ", nombre=" + this.nombre + "]";
 	}
 
 }

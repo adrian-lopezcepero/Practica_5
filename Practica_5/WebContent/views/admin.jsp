@@ -16,6 +16,7 @@
 <c:import url="headerViews.jsp"></c:import>
 
 <body>
+
 	<section id="adminUser">
 		<form action="${pageContext.request.contextPath}/Users" method="get">
 			<div class="buttonContainer">

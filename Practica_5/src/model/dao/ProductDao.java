@@ -1,15 +1,15 @@
-package modelo.dao;
+package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.beans.CategoriaBean;
-import modelo.beans.ProductoBean;
-import modelo.conexion.MySQLConnection;
+import model.beans.CategoryBean;
+import model.beans.ProductoBean;
+import model.conection.MySQLConnection;
 
-public class ProductoDao extends Dao {
+public class ProductDao extends Dao {
 	
 	public boolean insertProducto(ProductoBean producto) {
 		String sql = "INSERT INTO producto (nombre, descripcion, precio, imagen, idCategoria) "
@@ -84,9 +84,9 @@ public class ProductoDao extends Dao {
 			ResultSet res = stm.executeQuery(sql);
 			while(res.next()){
 				existe = true;
-				CategoriaBean categoriaBean = new CategoriaBean();
-				categoriaBean.setId(res.getInt("c.id"));
-				categoriaBean.setNombre(res.getString("c.nombre"));
+				CategoryBean categoryBean = new CategoryBean();
+				categoryBean.setId(res.getInt("c.id"));
+				categoryBean.setNombre(res.getString("c.nombre"));
 				
 				ProductoBean productoBean = new ProductoBean();
 				productoBean.setId(res.getInt("p.id"));
@@ -94,7 +94,7 @@ public class ProductoDao extends Dao {
 				productoBean.setDescripcion(res.getString("descripcion"));
 				productoBean.setPrecio(res.getDouble("precio"));
 				productoBean.setImagen(res.getString("imagen"));
-				productoBean.setCategoria(categoriaBean);
+				productoBean.setCategoria(categoryBean);
 				productoBeans.add(productoBean);
 			}
 			stm.close();

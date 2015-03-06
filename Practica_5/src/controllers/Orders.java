@@ -1,4 +1,4 @@
-package controladores;
+package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ import javax.servlet.jsp.PageContext;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeMultipart;
 
-import modelo.Logica;
-import modelo.beans.LineaPedidoBean;
-import modelo.beans.PedidoBean;
-import modelo.beans.ProductoBean;
-import modelo.beans.UsuarioBean;
+import model.Logic;
+import model.beans.PurchaseLineBean;
+import model.beans.PedidoBean;
+import model.beans.ProductoBean;
+import model.beans.UserBean;
 
 /**
  * Servlet implementation class Orders
@@ -40,14 +40,14 @@ public class Orders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String MAILUSER = "marisma2014@yahoo.es";
 	private static final String MAILPASS = "Pepito1234";
-	private Logica logica;
+	private Logic logic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Orders() {
 		super();
-		logica = new Logica();
+		logic = new Logic();
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Orders extends HttpServlet {
 		if (request.getParameter("addCesta") != null) {
 			ArrayList<ProductoBean> cesta;
 			int id = Integer.parseInt(request.getParameter("prod"));
-			ProductoBean producto = logica.setProducto(id,
+			ProductoBean producto = logic.setProducto(id,
 					Integer.parseInt(request.getParameter("cant")));
 
 			if (session.getAttribute("cesta") != null) {
@@ -91,7 +91,7 @@ public class Orders extends HttpServlet {
 				session.setAttribute(
 						"pedido",
 						getPedidoFromCesta(cesta,
-								(UsuarioBean) session.getAttribute("isLogin")));
+								(UserBean) session.getAttribute("isLogin")));
 				response.sendRedirect("views/viewCart.jsp?cesta=" + cesta.size());
 			}
 			else {
@@ -104,10 +104,10 @@ public class Orders extends HttpServlet {
 
 		if (request.getParameter("pay") != null) {
 			PedidoBean pedido = (PedidoBean) session.getAttribute("pedido");
-			pedido.setUsuario((UsuarioBean) getServletContext().getAttribute(
+			pedido.setUsuario((UserBean) getServletContext().getAttribute(
 					"isLogin"));
 		    response.sendError(HttpServletResponse.SC_NOT_FOUND);
-//			logica.insertPedido(pedido);
+//			logic.insertPedido(pedido);
 ////			 Send the mail to admin
 //			try {
 //				this.sendEmail("Compra realizada", session, "alcg80@yahoo.es");
@@ -131,13 +131,13 @@ public class Orders extends HttpServlet {
 	}
 
 	private PedidoBean getPedidoFromCesta(ArrayList<ProductoBean> cesta,
-			UsuarioBean usuario) {
-		ArrayList<LineaPedidoBean> lineasPedido = new ArrayList<LineaPedidoBean>();
+			UserBean usuario) {
+		ArrayList<PurchaseLineBean> lineasPedido = new ArrayList<PurchaseLineBean>();
 		double importe = 0;
 
 		int id = 1;
 		for (ProductoBean producto : cesta) {
-			LineaPedidoBean linea = new LineaPedidoBean();
+			PurchaseLineBean linea = new PurchaseLineBean();
 			int index = estaDuplicado(producto, lineasPedido);
 
 			if (index == -1) {
@@ -163,11 +163,11 @@ public class Orders extends HttpServlet {
 	}
 
 	/**
-	 * Devuelve el indice (id - 1) del ArrayList<LineaPedidoBean> si el producto
+	 * Devuelve el indice (id - 1) del ArrayList<PurchaseLineBean> si el producto
 	 * está duplicado en la cesta; si no, devuelve -1
 	 */
 	private int estaDuplicado(ProductoBean producto,
-			ArrayList<LineaPedidoBean> lineasPedido) {
+			ArrayList<PurchaseLineBean> lineasPedido) {
 		for (int i = 0; i < lineasPedido.size(); i++) {
 			if (lineasPedido.get(i).getProducto().getId() == producto.getId()) {
 				return i;
@@ -197,7 +197,7 @@ public class Orders extends HttpServlet {
 		output.append("COMPRA REALIZADA\n\n");
 		output.append("PRODUCTOS\n\n");
 		PedidoBean pedido = (PedidoBean) httpSession.getAttribute("pedido");
-		ArrayList<LineaPedidoBean> lineasPedido = pedido.getLineasPedido();
+		ArrayList<PurchaseLineBean> lineasPedido = pedido.getLineasPedido();
 		output.append("NOMBRE");
 		output.append("\t");
 		output.append("PRECIO");
@@ -206,15 +206,15 @@ public class Orders extends HttpServlet {
 		output.append("\t");
 		output.append("IMPORTE");
 		output.append("\n");
-		for (LineaPedidoBean lineaPedidoBean : lineasPedido) {
-			output.append(lineaPedidoBean.getProducto().getNombre());
+		for (PurchaseLineBean purchaseLineBean : lineasPedido) {
+			output.append(purchaseLineBean.getProducto().getNombre());
 			output.append("\t");
-			output.append(lineaPedidoBean.getProducto().getPrecio());
+			output.append(purchaseLineBean.getProducto().getPrecio());
 			output.append("\t");
-			output.append(lineaPedidoBean.getCantidad());
+			output.append(purchaseLineBean.getCantidad());
 			output.append("\t");
-			output.append(lineaPedidoBean.getProducto().getPrecio()
-					* lineaPedidoBean.getCantidad());
+			output.append(purchaseLineBean.getProducto().getPrecio()
+					* purchaseLineBean.getCantidad());
 			output.append("\n");
 		}
 		output.append("\n\n");

@@ -1,6 +1,6 @@
-<%@page import="modelo.beans.CategoriaBean"%>
+<%@page import="model.beans.CategoryBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="modelo.Logica"%>
+<%@page import="model.Logic"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -37,14 +37,14 @@
 				<input type="file" id="image" name="image" required="required" />
 				<br>
 				<%
-					Logica logica = new Logica();
-					// 			ArrayList<CategoriaBean> categorias = logica.getCategorias();
-					ArrayList<CategoriaBean> categorias = new ArrayList<CategoriaBean>();
-					categorias.add(new CategoriaBean(1, "Android"));
-					categorias.add(new CategoriaBean(2, "Windows Phone"));
-					categorias.add(new CategoriaBean(3, "Iphone"));
+					Logic logica = new Logic();
+									// 			ArrayList<CategoriaBean> categorias = logica.getCategorias();
+									ArrayList<CategoryBean> categorias = new ArrayList<CategoryBean>();
+									categorias.add(new CategoryBean(1, "Android"));
+									categorias.add(new CategoryBean(2, "Windows Phone"));
+									categorias.add(new CategoryBean(3, "Iphone"));
 
-					pageContext.setAttribute("categorias", categorias);
+									pageContext.setAttribute("categorias", categorias);
 				%>
 				<label>Categoría:</label>
 				<select name="category">

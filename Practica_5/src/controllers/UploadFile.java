@@ -1,4 +1,4 @@
-package controladores;
+package controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
-import modelo.Logica;
-import modelo.beans.CategoriaBean;
-import modelo.beans.ProductoBean;
+import model.Logic;
+import model.beans.CategoryBean;
+import model.beans.ProductoBean;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -152,23 +152,23 @@ public class UploadFile extends HttpServlet {
 	private void insertIntoDatabase(ArrayList<FileItem> formFields,
 			HttpSession session) {
 		String action = formFields.get(formFields.size() - 1).getFieldName();
-		Logica logica = new Logica();
+		Logic logic = new Logic();
 
 		// Crea el ProductoBean
-		CategoriaBean categoria = logica.selectCategoria(Integer
+		CategoryBean categoria = logic.selectCategoria(Integer
 				.parseInt(formFields.get(3).getString()));
 		ProductoBean producto = new ProductoBean(0, formFields.get(0)
 				.getString(), formFields.get(1).getString(),
 				Double.parseDouble(formFields.get(2).getString()), relativePath
 						+ "/" + file.getName(), categoria);
 		if (action.equals("sendNew")) {
-			logica.insertProducto(producto);
+			logic.insertProducto(producto);
 		}
 		else if (action.equals("sendModify")) {
 			ProductoBean productoBean = (ProductoBean) session
 					.getAttribute("productoModificar");
 			producto.setId(productoBean.getId());
-			logica.updateProducto(producto);
+			logic.updateProducto(producto);
 		}
 
 	}

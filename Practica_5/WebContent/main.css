@@ -13,12 +13,16 @@ header, section#products, footer, section#adminUser {
 
 header h1 {
 	text-align: left;
+	font-size: 3em; color : #00427c;
 	margin: 0;
 	padding: 0;
 	background-image: url("img/headerBackground.png");
 	background-repeat: no-repeat;;
 	background-size: 100% 100%;
-	background-image: url("img/headerBackground.png")
+	background-image: url("img/headerBackground.png");
+	margin: 0;
+	text-shadow: 1px 1px 1px #000;
+	color: #00427c;
 }
 
 #loginCartContainer, #categories, .product, .fotoramaBackground,
@@ -33,6 +37,10 @@ header h1 {
 	color: white;
 	text-shadow: 1px 1px 1px black;
 	background-color: #ff6100;
+}
+
+#categories .categorySelected{
+	color: #ff6100;
 }
 
 #loginCartContainer section {
@@ -61,9 +69,16 @@ header h1 {
 	width: 15%;
 }
 
-#cartContainer img, #home img {
-	min-width: 20px;
-	width: 10%;
+#loginCartContainer section#cartContainer #productAmount {
+	margin: 5%;
+	padding: 5%;
+	border-radius: 100%;
+	background-color: #ff0000;
+}
+
+#cartContainer img, #home a img, #home a {
+	min-width: 40px;
+	width: 20%;
 }
 
 #products {
@@ -81,7 +96,7 @@ header h1 {
 }
 
 #products #categories {
-	position:relative;
+	position: relative;
 	max-height: 18px;
 	left: -8px;
 }

@@ -1,9 +1,9 @@
-package modelo.dao;
+package model.dao;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import modelo.conexion.MySQLConnection;
+import model.conection.MySQLConnection;
 
 public class Dao {
 	protected MySQLConnection conex = new MySQLConnection();

@@ -1,5 +1,5 @@
-<%@page import="modelo.beans.ProductoBean"%>
-<%@page import="modelo.Logica"%>
+<%@page import="model.beans.ProductoBean"%>
+<%@page import="model.Logic"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +7,7 @@
 
 
 <%
-	Logica logica = new Logica();
+	Logic logica = new Logic();
 	int id = Integer.parseInt(request.getParameter("pro"));
 	// 	ProductoBean producto = logica.setProducto(id);
 	session.setAttribute("producto", logica.setProducto(id));

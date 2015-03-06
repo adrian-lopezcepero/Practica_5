@@ -1,4 +1,4 @@
-package modelo.beans;
+package model.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,16 +11,16 @@ public class PedidoBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private UsuarioBean usuario;
+	private UserBean usuario;
 	private Calendar fecha;
-	private ArrayList<LineaPedidoBean> lineasPedido;
+	private ArrayList<PurchaseLineBean> lineasPedido;
 	private Double importe;
 
 	public PedidoBean() {
 	}
 
-	public PedidoBean(int id, UsuarioBean usuario, Calendar fecha,
-			ArrayList<LineaPedidoBean> lineasPedido, Double importe) {
+	public PedidoBean(int id, UserBean usuario, Calendar fecha,
+			ArrayList<PurchaseLineBean> lineasPedido, Double importe) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -37,11 +37,11 @@ public class PedidoBean implements Serializable {
 		this.id = id;
 	}
 
-	public UsuarioBean getUsuario() {
+	public UserBean getUsuario() {
 		return this.usuario;
 	}
 
-	public void setUsuario(UsuarioBean usuario) {
+	public void setUsuario(UserBean usuario) {
 		this.usuario = usuario;
 	}
 	
@@ -53,11 +53,11 @@ public class PedidoBean implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public ArrayList<LineaPedidoBean> getLineasPedido() {
+	public ArrayList<PurchaseLineBean> getLineasPedido() {
 		return this.lineasPedido;
 	}
 
-	public void setLineasPedido(ArrayList<LineaPedidoBean> lineasPedido) {
+	public void setLineasPedido(ArrayList<PurchaseLineBean> lineasPedido) {
 		this.lineasPedido = lineasPedido;
 	}
 

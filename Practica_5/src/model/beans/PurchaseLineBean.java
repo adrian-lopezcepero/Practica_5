@@ -1,8 +1,8 @@
-package modelo.beans;
+package model.beans;
 
 import java.io.Serializable;
 
-public class LineaPedidoBean implements Serializable {
+public class PurchaseLineBean implements Serializable {
 
 	/**
 	 * 
@@ -12,10 +12,10 @@ public class LineaPedidoBean implements Serializable {
 	private int cantidad;
 	private ProductoBean producto; 
 	
-	public LineaPedidoBean() {
+	public PurchaseLineBean() {
 	}
 
-	public LineaPedidoBean(int id, int cantidad, ProductoBean producto) {
+	public PurchaseLineBean(int id, int cantidad, ProductoBean producto) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
@@ -55,7 +55,7 @@ public class LineaPedidoBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LineaPedidoBean [id=" + this.id + ", cantidad=" + this.cantidad
+		return "PurchaseLineBean [id=" + this.id + ", cantidad=" + this.cantidad
 				+ ", productoBeans=" + this.producto + "]";
 	}
 

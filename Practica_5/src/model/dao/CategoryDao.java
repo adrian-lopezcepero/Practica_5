@@ -1,21 +1,21 @@
-package modelo.dao;
+package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.beans.CategoriaBean;
-import modelo.conexion.MySQLConnection;
+import model.beans.CategoryBean;
+import model.conection.MySQLConnection;
 
-public class CategoriaDao extends Dao {
+public class CategoryDao extends Dao {
 
-	public ArrayList<CategoriaBean> selectAllCategorias() {
+	public ArrayList<CategoryBean> selectAllCategorias() {
 		String sql = "SELECT * FROM categoria ORDER BY nombre";
 		return query(sql);
 	}
 
-	public CategoriaBean selectCategoria(int idCat) {
+	public CategoryBean selectCategoria(int idCat) {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM categoria "
 					+ "WHERE id = '" + idCat + "'";
@@ -23,19 +23,19 @@ public class CategoriaDao extends Dao {
 	}
 
 	/** Method for SELECT Statements */
-	private ArrayList<CategoriaBean> query(String sql) {
+	private ArrayList<CategoryBean> query(String sql) {
 		conex = new MySQLConnection();
-		ArrayList<CategoriaBean> categoriaBeans = new ArrayList<CategoriaBean>();
+		ArrayList<CategoryBean> categoryBeans = new ArrayList<CategoryBean>();
 
 		try {
 			Statement stm = conex.getConnection().createStatement();
 			ResultSet res = stm.executeQuery(sql);
 			while (res.next()) {
 				existe = true;
-				CategoriaBean categoriaBean = new CategoriaBean();
-				categoriaBean.setId(res.getInt("id"));
-				categoriaBean.setNombre(res.getString("nombre"));
-				categoriaBeans.add(categoriaBean);
+				CategoryBean categoryBean = new CategoryBean();
+				categoryBean.setId(res.getInt("id"));
+				categoryBean.setNombre(res.getString("nombre"));
+				categoryBeans.add(categoryBean);
 			}
 			stm.close();
 			conex.disconnect();
@@ -44,7 +44,7 @@ public class CategoriaDao extends Dao {
 			System.out.println(e.getMessage());
 		}
 
-		return (existe) ? categoriaBeans : null;
+		return (existe) ? categoryBeans : null;
 	}
 
 }

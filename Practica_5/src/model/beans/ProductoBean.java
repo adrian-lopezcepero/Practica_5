@@ -1,4 +1,4 @@
-package modelo.beans;
+package model.beans;
 
 import java.io.Serializable;
 
@@ -14,26 +14,26 @@ public class ProductoBean implements Serializable {
 	private Double precio;
 	private int cantidad = 1;
 	private String imagen;
-	private CategoriaBean categoriaBean;
+	private CategoryBean categoryBean;
 
 	public ProductoBean() {
 	}
 
 	public ProductoBean(int id, String nombre, String descripcion,
-			Double precio, String imagen, CategoriaBean categoriaBean) {
+			Double precio, String imagen, CategoryBean categoryBean) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.imagen = imagen;
-		this.categoriaBean = categoriaBean;
+		this.categoryBean = categoryBean;
 
 	}
 
 	public ProductoBean(int id, String nombre, String descripcion,
 			Double precio, int cantidad, String imagen,
-			CategoriaBean categoriaBean) {
+			CategoryBean categoryBean) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -41,7 +41,7 @@ public class ProductoBean implements Serializable {
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.imagen = imagen;
-		this.categoriaBean = categoriaBean;
+		this.categoryBean = categoryBean;
 
 	}
 
@@ -93,12 +93,12 @@ public class ProductoBean implements Serializable {
 		this.imagen = imagen;
 	}
 
-	public CategoriaBean getCategoria() {
-		return this.categoriaBean;
+	public CategoryBean getCategoria() {
+		return this.categoryBean;
 	}
 
-	public void setCategoria(CategoriaBean categoriaBean) {
-		this.categoriaBean = categoriaBean;
+	public void setCategoria(CategoryBean categoryBean) {
+		this.categoryBean = categoryBean;
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class ProductoBean implements Serializable {
 		return "ProductoBean [id=" + this.id + ", nombre=" + this.nombre
 				+ ", descripcion=" + this.descripcion + ", precio="
 				+ this.precio + ", cantidad=" + this.cantidad + ", imagen="
-				+ this.imagen + ", categoriaBean=" + this.categoriaBean + "]";
+				+ this.imagen + ", categoryBean=" + this.categoryBean + "]";
 	}
 
 }

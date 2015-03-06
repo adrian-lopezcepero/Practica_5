@@ -1,8 +1,8 @@
-package modelo.beans;
+package model.beans;
 
 import java.io.Serializable;
 
-public class UsuarioBean implements Serializable {
+public class UserBean implements Serializable {
 
 	/**
 	 * 
@@ -17,10 +17,10 @@ public class UsuarioBean implements Serializable {
 	private String direccion;
 	private String sessionId;
 
-	public UsuarioBean() {
+	public UserBean() {
 	}
 
-	public UsuarioBean(int id, String nombre, String apellidos, String email,
+	public UserBean(int id, String nombre, String apellidos, String email,
 			String alias, String clave, String direccion) {
 		super();
 		this.id = id;
@@ -98,7 +98,7 @@ public class UsuarioBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UsuarioBean [id=" + this.id + ", nombre=" + this.nombre
+		return "UserBean [id=" + this.id + ", nombre=" + this.nombre
 				+ ", apellidos=" + this.apellidos + ", email=" + this.email
 				+ ", alias=" + this.alias + ", clave=" + this.clave
 				+ ", direccion=" + this.direccion + ", sessionId="
@@ -135,7 +135,7 @@ public class UsuarioBean implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuarioBean other = (UsuarioBean) obj;
+		UserBean other = (UserBean) obj;
 		if (this.alias == null) {
 			if (other.alias != null)
 				return false;

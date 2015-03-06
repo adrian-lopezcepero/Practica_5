@@ -1,4 +1,4 @@
-package controladores;
+package controllers;
 
 import java.io.IOException;
 
@@ -9,26 +9,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Logica;
-import modelo.beans.UsuarioBean;
+import model.Logic;
+import model.beans.UserBean;
 
 /**
- * Servlet implementation class UsuarioBean
+ * Servlet implementation class UserBean
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String alias;
 	private String clave;
-	private UsuarioBean isLogin;
-	private Logica logica;
+	private UserBean isLogin;
+	private Logic logic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Login() {
 		super();
-		logica = new Logica();
+		logic = new Logic();
 	}
 
 	/**
@@ -61,12 +61,12 @@ public class Login extends HttpServlet {
 		if (request.getParameter("login") != null) {
 			// En primer lugar comprobamos que no hay un usuario logeado con la
 			// variable de aplcación.
-			isLogin = (UsuarioBean) getServletContext().getAttribute("isLogin");
+			isLogin = (UserBean) getServletContext().getAttribute("isLogin");
 			if (isLogin == null) {
 				boolean admin = false;
 				boolean usuario = false;
 				// Comprobamos si el usuario existe
-				UsuarioBean user = logica.verificaUsuario(alias, clave);
+				UserBean user = logic.verificaUsuario(alias, clave);
 				if (user != null) {
 					user.setSessionId(session.getId());
 					getServletContext().setAttribute("isLogin", user);

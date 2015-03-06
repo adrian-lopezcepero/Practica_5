@@ -1,4 +1,4 @@
-package controladores;
+package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Logica;
-import modelo.beans.ProductoBean;
+import model.Logic;
+import model.beans.ProductoBean;
 
 /**
  * Servlet implementation class Products
@@ -19,14 +19,14 @@ import modelo.beans.ProductoBean;
 @WebServlet("/Products")
 public class Products extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Logica logica;
+	private Logic logic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Products() {
 		super();
-		logica = new Logica();
+		logic = new Logic();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -53,7 +53,7 @@ public class Products extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("getAllProducts") != null) {
-			ArrayList<ProductoBean> allProducts = logica.getProductos();
+			ArrayList<ProductoBean> allProducts = logic.getProductos();
 			session.setAttribute("allProducts", allProducts);
 			response.sendRedirect("views/adminProduct.jsp");
 		}
@@ -74,7 +74,7 @@ public class Products extends HttpServlet {
 					.getAttribute("allProducts");
 			ProductoBean productoSeleccionado = products.get(Integer
 					.parseInt(request.getParameter("productSelected")));
-			logica.deleteProducto(productoSeleccionado.getId());
+			logic.deleteProducto(productoSeleccionado.getId());
 			// Vuelve a recargar la página para comprobar que se ha borrado
 			response.sendRedirect("Products?getAllProducts=true");
 

@@ -1,19 +1,19 @@
-package modelo.dao;
+package model.dao;
 
 import java.util.ArrayList;
 
-import modelo.beans.LineaPedidoBean;
-import modelo.beans.PedidoBean;
+import model.beans.PurchaseLineBean;
+import model.beans.PedidoBean;
 
-public class PedidoDao extends Dao {
+public class PurchaseDao extends Dao {
 	
 	public boolean insertPedido(PedidoBean pedido) {
 		String sql1 = "INSERT INTO pedido (importe, idUsuario) "
 					+ "VALUES ('" + pedido.getImporte() + "', '" + pedido.getUsuario().getId() + "');";
 
 		String sql2 = "INSERT INTO lineapedido (idPedido, idLineaPedido, cantidad, idProducto) ";
-		ArrayList<LineaPedidoBean> lineas = pedido.getLineasPedido();
-		for (LineaPedidoBean linea : lineas) {
+		ArrayList<PurchaseLineBean> lineas = pedido.getLineasPedido();
+		for (PurchaseLineBean linea : lineas) {
 					sql2 += "		  VALUES (((SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES "
 						  + "                   WHERE TABLE_SCHEMA = '" + conex.getDATABASE() + "' AND TABLE_NAME = 'pedido') - 1),"
 						  + 				   linea.getId() + "," + linea.getCantidad() + "," + linea.getProducto().getId() + "), ";
@@ -42,9 +42,9 @@ public class PedidoDao extends Dao {
 //			while(res.next()){
 //				existe = true;
 //				
-//				// UsuarioBean
+//				// UserBean
 //				
-//				// CategoriaBean
+//				// CategoryBean
 //				categoriaBean.setId(res.getInt("idCat"));
 //				categoriaBean.setNombre(res.getString("nombreCat"));
 //				

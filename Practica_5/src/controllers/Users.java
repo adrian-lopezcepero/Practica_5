@@ -1,4 +1,4 @@
-package controladores;
+package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.Logica;
-import modelo.beans.UsuarioBean;
+import model.Logic;
+import model.beans.UserBean;
 
 /**
  * Servlet implementation class Products
@@ -19,14 +19,14 @@ import modelo.beans.UsuarioBean;
 @WebServlet("/Users")
 public class Users extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Logica logica;
+	private Logic logic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Users() {
 		super();
-		logica = new Logica();
+		logic = new Logic();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -43,7 +43,7 @@ public class Users extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("getAllUsers") != null) {
-			ArrayList<UsuarioBean> allUsers = logica.getUsuarios();
+			ArrayList<UserBean> allUsers = logic.getUsuarios();
 			session.setAttribute("allUsers", allUsers);
 			response.sendRedirect("views/admin.jsp");
 		}
@@ -52,40 +52,40 @@ public class Users extends HttpServlet {
 			response.sendRedirect("views/addUser.jsp");
 		}
 		if (request.getParameter("modify") != null) {
-			ArrayList<UsuarioBean> users = (ArrayList<UsuarioBean>) session
+			ArrayList<UserBean> users = (ArrayList<UserBean>) session
 					.getAttribute("allUsers");
-			UsuarioBean usuarioSeleccionado = users.get(Integer
+			UserBean usuarioSeleccionado = users.get(Integer
 					.parseInt(request.getParameter("userSelected")));
 			session.setAttribute("usuarioModificar", usuarioSeleccionado);
 			response.sendRedirect("views/addUser.jsp");
 		}
 		if (request.getParameter("remove") != null) {
-			ArrayList<UsuarioBean> users = (ArrayList<UsuarioBean>) session
+			ArrayList<UserBean> users = (ArrayList<UserBean>) session
 					.getAttribute("allUsers");
-			UsuarioBean usuarioSeleccionado = users.get(Integer
+			UserBean usuarioSeleccionado = users.get(Integer
 					.parseInt(request.getParameter("userSelected")));
-			logica.deleteUsuario(usuarioSeleccionado.getId());
+			logic.deleteUsuario(usuarioSeleccionado.getId());
 			// Vuelve a recargar la página para comprobar que se ha borrado
 			response.sendRedirect("Users?getAllUsers=true");
 
 		}
 		if (request.getParameter("sendNew") != null) {
-			UsuarioBean bean = new UsuarioBean(0, request
+			UserBean bean = new UserBean(0, request
 					.getParameter("name"), request.getParameter("surname"),
 					request.getParameter("email"), request
 							.getParameter("alias"), request
 							.getParameter("password"), request
 							.getParameter("address"));
 			System.out.println(bean);
-			logica.insertUsuario(bean);
+			logic.insertUsuario(bean);
 			// Vuelve a recargar la página para comprobar que se ha añadido
 			response.sendRedirect("Users?getAllUsers=true");
 			
 		}
 		if (request.getParameter("sendModify") != null) {
-			UsuarioBean usuarioBean = (UsuarioBean) session
+			UserBean userBean = (UserBean) session
 					.getAttribute("usuarioModificar");
-			logica.updateUsuario(new UsuarioBean(usuarioBean.getId(), request
+			logic.updateUsuario(new UserBean(userBean.getId(), request
 					.getParameter("name"), request.getParameter("surname"),
 					request.getParameter("email"), request
 							.getParameter("alias"), request
