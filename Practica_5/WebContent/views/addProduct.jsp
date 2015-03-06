@@ -16,8 +16,6 @@
 <c:import url="headerViews.jsp"></c:import>
 
 <body>
-	<% Integer.parseInt("a"); %>
-
 	<section id="adminUser">
 		<h3>AÑADIR/MODIFICAR USUARIO</h3>
 		<section>
