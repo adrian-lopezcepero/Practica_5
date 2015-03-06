@@ -27,14 +27,14 @@
 			<img alt="imagen de producto"
 				src="${pageContext.request.contextPath }/${sessionScope.producto.imagen}">
 			<div>${sessionScope.producto.precio}€</div>
-			<form action="${pageContext.request.contextPath}/Pedidos" method="post">
+			<form action="${pageContext.request.contextPath}/Orders" method="post">
 				<input type="hidden" name="prod" value="${sessionScope.producto.id}">
 				<input type="hidden" name="page"
 					value="views/product.jsp?cat=${sessionScope.producto.categoria.id}&pro=${sessionScope.producto.id}">
 				<div>
 					<label>Cantidad: </label>
 					<input type="number" name="cant" value="1" min="1" style="max-width:50px;">
-					<input type="submit" name="addCesta" value="Añadir a la Cesta" />
+					<input type="submit" name="addCesta" value="Añadir producto" />
 				</div>
 			</form>
 			<br>

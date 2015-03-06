@@ -69,11 +69,11 @@
 						href="views/product.jsp?cat=${prod.categoria.id}&pro=${prod.id}">${prod.nombre}</a>
 					<br>
 					<span class="price">${prod.precio} €</span>
-					<form action="Pedidos" method="post">
+					<form action="${pageContext.request.contextPath}/Orders" method="post">
 						<input type="hidden" name="prod" value="${prod.id}">
 						<input type="hidden" name="page" value="index.jsp">
 						<input type="hidden" name="cant" value="1">
-						<input type="submit" name="addCesta" value="Añadir a la Cesta" />
+						<input type="submit" name="addCesta" value="Añadir producto" />
 					</form>
 				</div>
 			</div>

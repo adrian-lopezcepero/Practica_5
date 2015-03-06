@@ -50,7 +50,7 @@
 		</div>
 
 		<div id="total">
-			<form action="${pageContext.request.contextPath}/Pedidos"
+			<form action="${pageContext.request.contextPath}/Orders"
 				method="post">
 				<span>
 					TOTAL:
@@ -59,7 +59,15 @@
 				</fmt:formatNumber>
 					€
 				</span>
-				<button type="submit" name="comprar">Comprar</button>
+				<!-- 				Debes estar logeado para poder comprar -->
+				<c:choose>
+					<c:when test="${applicationScope.isLogin != null}">
+						<button type="submit" name="pay">Comprar</button>
+					</c:when>
+					<c:otherwise>
+						<div>Debes estar logeado para poder realizar la compra.</div>
+					</c:otherwise>
+				</c:choose>
 			</form>
 		</div>
 	</section>

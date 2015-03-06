@@ -30,7 +30,7 @@ public class PedidoDao extends Dao {
 
 	
 	
-/** De momento no tenemos consultas de Pedidos */	
+/** De momento no tenemos consultas de Orders */	
 //	/** Method for SELECT Statements */
 //	private ArrayList<PedidoBean> query(String sql) {
 //		conex = new MySQLConnection();

@@ -26,7 +26,7 @@
 
 		<c:import url="views/header.jsp"></c:import>
 
-		<c:import url="views/products.jsp?cat=${param.cat}"></c:import>
+		<c:import url="views/products.jsp?cat=${param.cat}&pro=${prod.id}"></c:import>
 
 		<c:import url="views/footer.jsp"></c:import>
 

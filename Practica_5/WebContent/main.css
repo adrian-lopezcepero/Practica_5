@@ -141,14 +141,14 @@ header h1 {
 	text-shadow: 1px 1px 1px #000;
 }
 
-/* .productSelected { */
-/* 	width: 90%; */
-/* 	margin: auto; */
-/* } */
 #productContainer .product {
 	width: 60%;
 	margin: auto;
 	text-align: center;
+}
+
+#productContainer .product img {
+	max-width: 20%;
 }
 
 .product #description {

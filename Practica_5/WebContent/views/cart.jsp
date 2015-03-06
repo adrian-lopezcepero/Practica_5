@@ -6,13 +6,13 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <section id="cartContainer">
-	<form action="${pageContext.request.contextPath}/Pedidos" method="post">
+	<form action="${pageContext.request.contextPath}/Orders" method="post">
 		<img alt="imagen de carrito"
 			src="${pageContext.request.contextPath }/img/shopping_cart.png">
 		<span id="productAmount">${param.cesta}</span>
 		<!-- 	Ver Cesta (boton) -->
 		<input type="hidden" name="page" value="index.jsp">
-		<button type="submit" name="verCesta">Pagar</button>
+		<button type="submit" name="viewCart">Pagar</button>
 	</form>
 
 	<!-- verCesta=false (cesta vacía) -->

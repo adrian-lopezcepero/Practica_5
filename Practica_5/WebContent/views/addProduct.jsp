@@ -32,7 +32,7 @@
 					value="${productoModificar.precio }" />
 				<br>
 				<label for="image">Imagen:</label>
-				<input type="file" id="image" name="image" required="required" " />
+				<input type="file" id="image" name="image" required="required" />
 				<br>
 				<%
 					Logica logica = new Logica();

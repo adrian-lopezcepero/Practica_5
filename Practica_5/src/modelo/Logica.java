@@ -102,7 +102,7 @@ public class Logica {
 		return categoriaDao.selectAllCategorias();
 	}
 
-	// Pedidos
+	// Orders
 	public boolean insertPedido(PedidoBean pedido) {
 		return this.pedidoDao.insertPedido(pedido);
 	}
