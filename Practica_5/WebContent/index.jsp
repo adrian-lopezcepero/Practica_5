@@ -1,13 +1,14 @@
 <%@page import="modelo.Logica"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page errorPage="errors.jsp"%>
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@ page errorPage="errors.jsp"%>
+
 
 <%
 	if (session.getAttribute("categorias") == null) {
@@ -24,7 +25,6 @@
 <html>
 <c:import url="views/head.jsp"></c:import>
 <body>
-
 
 	<c:import url="views/header.jsp"></c:import>
 

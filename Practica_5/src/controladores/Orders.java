@@ -106,16 +106,16 @@ public class Orders extends HttpServlet {
 			PedidoBean pedido = (PedidoBean) session.getAttribute("pedido");
 			pedido.setUsuario((UsuarioBean) getServletContext().getAttribute(
 					"isLogin"));
-//		    response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			logica.insertPedido(pedido);
-//			 Send the mail to admin
-			try {
-				this.sendEmail("Compra realizada", session, "alcg80@yahoo.es");
-			}
-			catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//			logica.insertPedido(pedido);
+////			 Send the mail to admin
+//			try {
+//				this.sendEmail("Compra realizada", session, "alcg80@yahoo.es");
+//			}
+//			catch (MessagingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			session.removeAttribute("cesta");
 			response.sendRedirect("views/payment.jsp");
 		}

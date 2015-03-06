@@ -7,6 +7,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@ page errorPage="../errors.jsp"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +16,8 @@
 <c:import url="headerViews.jsp"></c:import>
 
 <body>
+	<% Integer.parseInt("a"); %>
+
 	<section id="adminUser">
 		<h3>AÑADIR/MODIFICAR USUARIO</h3>
 		<section>
