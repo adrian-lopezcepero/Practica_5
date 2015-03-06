@@ -106,7 +106,6 @@ public class Orders extends HttpServlet {
 			PedidoBean pedido = (PedidoBean) session.getAttribute("pedido");
 			pedido.setUsuario((UserBean) getServletContext().getAttribute(
 					"isLogin"));
-		    response.sendError(HttpServletResponse.SC_NOT_FOUND);
 //			logic.insertPedido(pedido);
 ////			 Send the mail to admin
 //			try {
